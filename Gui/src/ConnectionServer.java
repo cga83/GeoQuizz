@@ -46,7 +46,7 @@ public class ConnectionServer extends Application {
 			 // ajout de texte dans une vbox
 			 VBox vboxPrincipal = new VBox();
 			 vboxPrincipal.setAlignment(Pos.CENTER);
-			 vboxPrincipal.setSpacing(20);
+			 vboxPrincipal.setSpacing(30);
 			 Text texteBienvenue = new Text("Bienvenue !");
 			 texteBienvenue.setFont(Font.font ("Lato", 50));
 			 texteBienvenue.setTextAlignment(TextAlignment.CENTER);
