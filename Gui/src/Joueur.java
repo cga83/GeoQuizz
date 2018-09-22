@@ -28,15 +28,15 @@ public class Joueur  extends JFrame{
 	
 	}
 	
-	//se connect au serveur grace à l'ip et au port
+	//se connect au serveur grace ï¿½ l'ip et au port
 	void connectAuServeur(String server, int port) {
 		try {
-			System.out.println("tentative de connection à "+ server + port);
+			System.out.println("tentative de connection ï¿½ "+ server + port);
 			Socket socket = new Socket(SERVEUR, PORT);
 			entre = new DataInputStream(socket.getInputStream());
 			sortie = new DataOutputStream(socket.getOutputStream());
 			int numJoueur = entre.readInt();
-			System.out.println("Joueur n°: "+numJoueur);
+			System.out.println("Joueur nï¿½: "+numJoueur);
 			
 //			entre.close();
 //			sortie.close();
@@ -46,6 +46,29 @@ public class Joueur  extends JFrame{
 		} catch (IOException e) {e.printStackTrace(); }
 	}
 	
-//	//s'indentifie grace à son pseudo et son mdp
-//	void connectAuJeu(String pseudo, String mdp)
+	
+//	//s'indentifie grace ï¿½ son pseudo et son mdp
+	void connectAuJeu(String pseudo, String mdp) {
+		boolean valide = false; 
+		//envoyer login mdp au serveur
+		try {
+			sortie.writeInt(1); //1 correspond ï¿½ la connection
+			sortie.writeUTF(pseudo);
+			sortie.writeUTF(mdp);
+			valide = entre.readBoolean(); // le serveur renvoie true ou false
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		if (valide) {
+			// afficher page jeu
+		} else {
+			//afficher mauvais couple pseudo/mdp
+		}
+	
+		
+		
+		
+	}
 }
