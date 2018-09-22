@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /Accueil.class
 /background.png
 /logo.png
@@ -6,7 +5,6 @@
 /ConnectToServer.class
 /ConnectionServer.class
 /happyWorld.png
-=======
 /Client.class
 /Serveur.class
 /Gui.class
@@ -18,6 +16,6 @@
 /background.png
 /logo.png
 /style.css
->>>>>>> 256960ad06941351f510660d408fbc58c105a5fd
 /PageConnection.class
 /ConnectionOuInscription.class
+/metadata/
