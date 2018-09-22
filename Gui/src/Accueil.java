@@ -21,7 +21,7 @@ import javafx.util.Duration;
      
 // classe accueil = interface utilisateur pour la connexion et/ou inscription
 public class Accueil extends Application {
-	// création de la racine
+	// crï¿½ation de la racine
 	StackPane root;
  
 	 // lancement de l'application
@@ -32,7 +32,7 @@ public class Accueil extends Application {
 	 // construction des objets que l'on va afficher
 	 void construireScene(Stage scenePrincipale)  
 	 {
-		 // définition de la fenêtre
+		 // dï¿½finition de la fenï¿½tre
 		 int largeur = 500;
 		 int hauteur = 800;
 		 
@@ -41,32 +41,32 @@ public class Accueil extends Application {
 		 // ajout d'une feuille css
 		 root.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
 		
-		 // ajout de la scène principale dans laquelle vont être contenus les éléments
+		 // ajout de la scï¿½ne principale dans laquelle vont ï¿½tre contenus les ï¿½lï¿½ments
 		 Scene scene = new Scene(root, largeur, hauteur);
 		 scenePrincipale.getIcons().add(new Image("logo.png"));
 		 scenePrincipale.setTitle("GeoQuiz");
 		 scenePrincipale.setScene(scene);
 	 
-		 // définition des objets graphiques
+		 // dï¿½finition des objets graphiques
 		 // ajout du titre "GeoQuiz" dans une HBox
-		 // création et positionnement de la HBox
+		 // crï¿½ation et positionnement de la HBox
 		 HBox hboxTitre = new HBox();
 		 hboxTitre.setAlignment(Pos.TOP_CENTER); 
-		 // Création de la première partie du texte
+		 // Crï¿½ation de la premiï¿½re partie du texte
 		 Text titreGeo = new Text();
 		 titreGeo.setFont(Font.font ("Lato", 50));
 		 titreGeo.setTextAlignment(TextAlignment.CENTER);
 		 titreGeo.setFill(Color.rgb(255,170,170));
 		 titreGeo.setText("GEO");
 		 titreGeo.setRotate(-12);
-		 // Création de la deuxième partie du texte
+		 // Crï¿½ation de la deuxiï¿½me partie du texte
 		 Text titreQuiz = new Text();
 		 titreQuiz.setFont(Font.font ("Verdana", 50));
 		 titreQuiz.setTextAlignment(TextAlignment.CENTER);
 		 titreQuiz.setFill(Color.WHITE);
 		 titreQuiz.setText("Quiz");
 		 titreQuiz.setRotate(12);
-		 // Ajout du texte à la Hbox
+		 // Ajout du texte ï¿½ la Hbox
 		 hboxTitre.getChildren().addAll(titreGeo, titreQuiz);
 		
 		 // ajout d'une image
@@ -75,7 +75,7 @@ public class Accueil extends Application {
 		 geoImage.setFitHeight(450);
 		
 		 // ajout de boutons dans une vbox
-		 // création et positionnement de la vbox
+		 // crï¿½ation et positionnement de la vbox
 		 VBox vboxBoutons = new VBox();
 		 vboxBoutons.setAlignment(Pos.BOTTOM_CENTER);
 		 vboxBoutons.setSpacing(20);
@@ -83,34 +83,36 @@ public class Accueil extends Application {
 		 Button boutonConnexion = new Button("Se connecter");
 		 // action sur le bouton
 		 boutonConnexion.setOnAction(value ->  {
-			 JOptionPane.showMessageDialog(null, "Connexion désirée");
+			 JOptionPane.showMessageDialog(null, "Connexion dï¿½sirï¿½e");
 		 });
 		 // ajout d'une classe pour pouvoir utiliser le style css
 		 boutonConnexion.getStyleClass().add("button");
 		// ajout d'un bouton s'inscrire
 		Button boutonInscription = new Button("S'inscrire");
 		boutonInscription.setOnAction(value ->  {
-			JOptionPane.showMessageDialog(null, "Inscription désirée");
+			JOptionPane.showMessageDialog(null, "Inscription dï¿½sirï¿½e");
 		});
 		boutonInscription.getStyleClass().add("button");
-		// ajout des boutons à la vbox
+		// ajout des boutons ï¿½ la vbox
 		vboxBoutons.getChildren().addAll(boutonConnexion, boutonInscription);
 	
-		// ajout de tous les objets à la racine (qui est reliée à primaryStage)
+		// ajout de tous les objets ï¿½ la racine (qui est reliï¿½e ï¿½ primaryStage)
 	    root.getChildren().addAll(hboxTitre, geoImage, vboxBoutons);
 	 
-	    // ajout d'une transition sur l'opacité de l'image
+	    // ajout d'une transition sur l'opacitï¿½ de l'image
 	    FadeTransition transitionImage = new FadeTransition(Duration.millis(3000), geoImage);
 	    transitionImage.setFromValue(0.01);
 	    transitionImage.setToValue(1.0);
 	    transitionImage.play();
 	 
-	    //afficher la scène
+	    //afficher la scï¿½ne
 	    scenePrincipale.show();      
 	}
 	   
 	 // lancement
 	 public static void main(String[] args) {
 		 launch(args);
+		 FonctionsCSV csv = new FonctionsCSV();
+		 csv.LireTab();
 	 }
 }
