@@ -1,7 +1,8 @@
-    import java.awt.Window;
-
+// pour le debug
 import javax.swing.JOptionPane;
 
+// import javafx
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,109 +13,104 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Duration;
      
-    public class Accueil extends Application {
-    	/**définition de la racine*/
-    	StackPane root;
-     
-         /**lancement de l'application*/
-         public void start(Stage primaryStage) {
-        	 construireScene(primaryStage);
-         }
-         
-        /**construction des objets que l'on va afficher*/
-         void construireScene(Stage primaryStage)  
-         {
-        	 // définition de la fenêtre
-        	 int largeur = 500;
-        	 int hauteur = 800;
-        	 
-        	 root = new StackPane();
-            
-        	 // definir css
-        	 root.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-            
-        	 //definir la scene principale
-        	 Scene scene = new Scene(root, largeur, hauteur);
-        	 primaryStage.getIcons().add(new Image("logo.png"));
-        	 primaryStage.setTitle("GeoQuiz");
-        	 primaryStage.setScene(scene);
-     
-        	 //definir les objets graphiques
-        	 // ajout du titre dans une hbox
-        	 HBox hboxTitle = new HBox();
-        	 hboxTitle.setAlignment(Pos.TOP_CENTER);
-            
-        	 Text titleGeo = new Text();
-        	 titleGeo.setFont(Font.font ("Lato", 50));
-        	 titleGeo.setTextAlignment(TextAlignment.CENTER);
-        	 titleGeo.setFill(Color.rgb(255,170,170));
-        	 titleGeo.setText("GEO");
-        	 
-        	 Text titleQuiz = new Text();
-        	 titleQuiz.setFont(Font.font ("Verdana", 50));
-        	 titleQuiz.setTextAlignment(TextAlignment.CENTER);
-        	 titleQuiz.setFill(Color.WHITE);
-        	 titleQuiz.setText("Quiz");
-            
-        	 hboxTitle.getChildren().addAll(titleGeo, titleQuiz);
-            
-        	 // ajout d'une image
-        	 ImageView geoImage = new ImageView(new Image("background.png"));
-        	 geoImage.setFitWidth(450);
-        	 geoImage.setFitHeight(450);
-            
-        	 // ajout de boutons dans une vbox
-        	 VBox vboxButtons = new VBox();
-        	 vboxButtons.setAlignment(Pos.BOTTOM_CENTER);
-        	 vboxButtons.setSpacing(20);
-        	 
-        	 // ajout d'un bouton connexion
-         	 Button buttonConnexion = new Button("Se connecter");
-             buttonConnexion.setOnAction(value ->  {
-            	 JOptionPane.showMessageDialog(null, "Connexion désirée");
-              });
-             buttonConnexion.getStyleClass().add("button");
-            
-            // ajout d'un bouton s'inscrire
-         	Button buttonInscription = new Button("S'inscrire");
-         	buttonInscription.setOnAction(value ->  {
-         		JOptionPane.showMessageDialog(null, "Inscription désirée");
-            });
-         	buttonInscription.getStyleClass().add("button");
-         	
-         	vboxButtons.getChildren().addAll(buttonConnexion, buttonInscription);
-            
-            // ajout de tous les objets à la racine
-            root.getChildren().addAll(hboxTitle, geoImage, vboxButtons);
-     
-            //une transition sur l'opacité de l'objet
-            /*FadeTransition ft = new FadeTransition(Duration.millis(2000), rectangle);
-            ft.setFromValue(1.0);
-            ft.setToValue(0.01);
-            ft.setCycleCount(2);
-            ft.setAutoReverse(true);
-            ft.play();
-           
-            //une transition sur la position de l'objet
-            TranslateTransition tt = new TranslateTransition(Duration.millis(3000), rectangle);
-            tt.setFromX(0);
-            //coordonnée relative
-            tt.setToX(-largeur+largeur/10);
-            tt.setCycleCount(1);
-            tt.play();*/
-           
-            //afficher le theatre
-            primaryStage.show();      
-         }
-           
-         /**lancement du prog*/
-         public static void main(String[] args) {
-            launch(args);
-         }
-      }
+// classe accueil = interface utilisateur pour la connexion et/ou inscription
+public class Accueil extends Application {
+	// création de la racine
+	StackPane root;
+ 
+	 // lancement de l'application
+	 public void start(Stage primaryStage) {
+		 construireScene(primaryStage);
+	 }
+	 
+	 // construction des objets que l'on va afficher
+	 void construireScene(Stage scenePrincipale)  
+	 {
+		 // définition de la fenêtre
+		 int largeur = 500;
+		 int hauteur = 800;
+		 
+		 root = new StackPane();
+		
+		 // ajout d'une feuille css
+		 root.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+		
+		 // ajout de la scène principale dans laquelle vont être contenus les éléments
+		 Scene scene = new Scene(root, largeur, hauteur);
+		 scenePrincipale.getIcons().add(new Image("logo.png"));
+		 scenePrincipale.setTitle("GeoQuiz");
+		 scenePrincipale.setScene(scene);
+	 
+		 // définition des objets graphiques
+		 // ajout du titre "GeoQuiz" dans une HBox
+		 // création et positionnement de la HBox
+		 HBox hboxTitre = new HBox();
+		 hboxTitre.setAlignment(Pos.TOP_CENTER); 
+		 // Création de la première partie du texte
+		 Text titreGeo = new Text();
+		 titreGeo.setFont(Font.font ("Lato", 50));
+		 titreGeo.setTextAlignment(TextAlignment.CENTER);
+		 titreGeo.setFill(Color.rgb(255,170,170));
+		 titreGeo.setText("GEO");
+		 titreGeo.setRotate(-12);
+		 // Création de la deuxième partie du texte
+		 Text titreQuiz = new Text();
+		 titreQuiz.setFont(Font.font ("Verdana", 50));
+		 titreQuiz.setTextAlignment(TextAlignment.CENTER);
+		 titreQuiz.setFill(Color.WHITE);
+		 titreQuiz.setText("Quiz");
+		 titreQuiz.setRotate(12);
+		 // Ajout du texte à la Hbox
+		 hboxTitre.getChildren().addAll(titreGeo, titreQuiz);
+		
+		 // ajout d'une image
+		 ImageView geoImage = new ImageView(new Image("background.png"));
+		 geoImage.setFitWidth(450);
+		 geoImage.setFitHeight(450);
+		
+		 // ajout de boutons dans une vbox
+		 // création et positionnement de la vbox
+		 VBox vboxBoutons = new VBox();
+		 vboxBoutons.setAlignment(Pos.BOTTOM_CENTER);
+		 vboxBoutons.setSpacing(20);
+		 // ajout d'un bouton connexion
+		 Button boutonConnexion = new Button("Se connecter");
+		 // action sur le bouton
+		 boutonConnexion.setOnAction(value ->  {
+			 JOptionPane.showMessageDialog(null, "Connexion désirée");
+		 });
+		 // ajout d'une classe pour pouvoir utiliser le style css
+		 boutonConnexion.getStyleClass().add("button");
+		// ajout d'un bouton s'inscrire
+		Button boutonInscription = new Button("S'inscrire");
+		boutonInscription.setOnAction(value ->  {
+			JOptionPane.showMessageDialog(null, "Inscription désirée");
+		});
+		boutonInscription.getStyleClass().add("button");
+		// ajout des boutons à la vbox
+		vboxBoutons.getChildren().addAll(boutonConnexion, boutonInscription);
+	
+		// ajout de tous les objets à la racine (qui est reliée à primaryStage)
+	    root.getChildren().addAll(hboxTitre, geoImage, vboxBoutons);
+	 
+	    // ajout d'une transition sur l'opacité de l'image
+	    FadeTransition transitionImage = new FadeTransition(Duration.millis(3000), geoImage);
+	    transitionImage.setFromValue(0.01);
+	    transitionImage.setToValue(1.0);
+	    transitionImage.play();
+	 
+	    //afficher la scène
+	    scenePrincipale.show();      
+	}
+	   
+	 // lancement
+	 public static void main(String[] args) {
+		 launch(args);
+	 }
+}
