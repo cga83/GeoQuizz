@@ -23,6 +23,8 @@ public class Accueil {
  
 	public Accueil(StackPane root) {
 		this.root = root;
+		 FonctionsCSV csv = new FonctionsCSV();
+		 csv.LireTab();
 		construireAccueil();
 	}
 	 
