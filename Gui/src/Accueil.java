@@ -40,7 +40,7 @@ public class Accueil {
 		 hboxMenu.setAlignment(Pos.CENTER_RIGHT);
 		 Button boutonRetour = new Button();
 		 boutonRetour.setOnAction(value ->  {
-			 JOptionPane.showMessageDialog(null, "retour désirée");
+			 JOptionPane.showMessageDialog(null, "retour désiré");
 		 });
 		 boutonRetour.getStyleClass().add("buttonMenu");
 		 hboxMenu.getChildren().add(boutonRetour);
@@ -98,7 +98,7 @@ public class Accueil {
 		boutonInscription.getStyleClass().add("buttonStyle1");
 		// ajout des boutons à la vbox
 		vboxBoutons.getChildren().addAll(boutonConnexion, boutonInscription);
-	
+		vboxBoutons.setPickOnBounds(false);
 		// ajout de tous les objets à la racine (qui est reliée à primaryStage)
 	    root.getChildren().addAll(menu, geoImage, vboxBoutons);
 	 

@@ -41,7 +41,7 @@ public class ConnexionServeur extends Application {
 			 primaryStage.getIcons().add(new Image("logo.png"));
 			 primaryStage.setTitle("GeoQuiz");
 			 primaryStage.setScene(scene);
-		 
+		 scene.setOnMousePressed(event -> System.out.println(event.getPickResult()));
 			 // définition des objets graphiques
 			 // ajout de texte dans une vbox
 			 VBox vboxPrincipal = new VBox();
