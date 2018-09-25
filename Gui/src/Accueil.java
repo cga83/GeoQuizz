@@ -35,6 +35,16 @@ public class Accueil {
 		 root.getChildren().clear();
 		 
 		 // définition des objets graphiques
+		 // ajout d'un bouton retour
+		 HBox hboxMenu = new HBox();
+		 hboxMenu.setAlignment(Pos.CENTER_RIGHT);
+		 Button boutonRetour = new Button();
+		 boutonRetour.setOnAction(value ->  {
+			 JOptionPane.showMessageDialog(null, "retour désirée");
+		 });
+		 boutonRetour.getStyleClass().add("buttonMenu");
+		 hboxMenu.getChildren().add(boutonRetour);
+		 
 		 // ajout du titre "GeoQuiz" dans une HBox
 		 // création et positionnement de la HBox
 		 HBox hboxTitre = new HBox();
@@ -55,6 +65,10 @@ public class Accueil {
 		 titreQuiz.setRotate(12);
 		 // Ajout du texte à la Hbox
 		 hboxTitre.getChildren().addAll(titreGeo, titreQuiz);
+		 
+		 // positionnement du menu par rapport au titre
+		 VBox menu = new VBox();
+		 menu.getChildren().addAll(hboxMenu, hboxTitre);
 		
 		 // ajout d'une image
 		 ImageView geoImage = new ImageView(new Image("background.png"));
@@ -74,19 +88,19 @@ public class Accueil {
 			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.CONNEXION);
 		 });
 		 // ajout d'une classe pour pouvoir utiliser le style css
-		 boutonConnexion.getStyleClass().add("button");
+		 boutonConnexion.getStyleClass().add("buttonStyle1");
 		// ajout d'un bouton s'inscrire
 		Button boutonInscription = new Button("S'inscrire");
 		boutonInscription.setOnAction(value ->  {
 			JOptionPane.showMessageDialog(null, "Inscription désirée");
 			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.INSCRIPTION);
 		});
-		boutonInscription.getStyleClass().add("button");
+		boutonInscription.getStyleClass().add("buttonStyle1");
 		// ajout des boutons à la vbox
 		vboxBoutons.getChildren().addAll(boutonConnexion, boutonInscription);
 	
 		// ajout de tous les objets à la racine (qui est reliée à primaryStage)
-	    root.getChildren().addAll(hboxTitre, geoImage, vboxBoutons);
+	    root.getChildren().addAll(menu, geoImage, vboxBoutons);
 	 
 	    // ajout d'une transition sur l'opacité de l'image
 	    FadeTransition transitionImage = new FadeTransition(Duration.millis(3000), geoImage);

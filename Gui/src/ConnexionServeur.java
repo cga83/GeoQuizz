@@ -76,7 +76,7 @@ public class ConnexionServeur extends Application {
 			 
 			 // bouton pour valider
 			 Button boutonValider = new Button("Ok !");
-			 boutonValider.getStyleClass().add("button");
+			 boutonValider.getStyleClass().add("buttonStyle1");
 			 boutonValider.setOnAction(value ->  {
 				 String port = choixPort.getText();
 				 String serveur = choixServeur.getText();

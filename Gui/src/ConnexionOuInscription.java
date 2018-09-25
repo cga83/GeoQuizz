@@ -58,7 +58,7 @@ public class ConnexionOuInscription {
 		 
 		 // bouton pour valider
 		 Button boutonValider = new Button("Ok !");
-		 boutonValider.getStyleClass().add("button");
+		 boutonValider.getStyleClass().add("buttonStyle1");
 		 boutonValider.setOnAction(value ->  {
 			 String mdp = choixMdp.getText();
 			 String pseudo = choixPseudo.getText();

@@ -5,7 +5,7 @@
 	-fx-border-width: 5px;
 }
 
-.button{
+.buttonStyle1{
 	-fx-background-color: rgb(124,183,237);
 	-fx-border-color: rgb(44,137,160);
 	-fx-border-width: 3px;
@@ -17,12 +17,30 @@
 	-fx-font-size: 20px;
 }
 
-.button:pressed {
-    -fx-background-color: rgb(44,137,160)rgb(124,183,237);
+.buttonStyle1:pressed {
+    -fx-background-color: rgb(44,137,160);
 	-fx-border-color: rgb(124,183,237);
 }
 
-.button:hover {
-    -fx-background-color: rgb(44,137,160)rgb(124,183,237);
+.buttonStyle1:hover {
+    -fx-background-color: rgb(44,137,160);
 	-fx-border-color: rgb(124,183,237);
+}
+
+.buttonMenu{
+	-fx-background-color: none;
+	-fx-background-image: url("retour.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: stretch;  
+    -fx-background-size: 50 50;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px; 
+}
+
+.buttonMenu:hover{
+	-fx-background-image: url("retourHover.png");
+}
+
+.buttonMenu:pressed{
+	-fx-background-image: url("retourHover.png");
 }
