@@ -25,5 +25,7 @@ public class Utils {
 	private static void runPreviousPage(Object actualPage, StackPane root) {
 		if (actualPage instanceof Accueil)
 			new ConnexionServeur(root);
+		if (actualPage instanceof ConnexionOuInscription)
+			new Accueil(root);
 	}
 }

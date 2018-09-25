@@ -3,6 +3,7 @@
 import javax.swing.JOptionPane;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -40,7 +41,13 @@ public class ConnexionOuInscription {
 		 titre.setFont(Font.font ("Lato", 50));
 		 titre.setTextAlignment(TextAlignment.CENTER);
 		 titre.setFill(Color.rgb(255,170,170));
-		 vboxPrincipal.getChildren().add(titre);
+		 
+		// bouton retour
+		Node hboxMenu = Utils.returnToPreviousPage(this, root);
+				 
+		 // positionnement du menu par rapport au titre
+		 VBox menu = new VBox();
+		 menu.getChildren().addAll(hboxMenu, titre);
 
 		 // choix du serveur et du port
 		 HBox hboxPseudo = new HBox();
@@ -72,7 +79,7 @@ public class ConnexionOuInscription {
 			 }
 		 });
 		 
-		 vboxPrincipal.getChildren().addAll(hboxPseudo, hboxMdp, boutonValider);
+		 vboxPrincipal.getChildren().addAll(menu, hboxPseudo, hboxMdp, boutonValider);
 		 
 		 root.getChildren().addAll(vboxPrincipal);
 		 

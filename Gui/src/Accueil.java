@@ -36,9 +36,6 @@ public class Accueil {
 		 root.getChildren().clear();
 		 
 		 // définition des objets graphiques
-		 // bouton retour
-		 Node hboxMenu = Utils.returnToPreviousPage(this, root);
-		 
 		 // ajout du titre "GeoQuiz" dans une HBox
 		 // création et positionnement de la HBox
 		 HBox hboxTitre = new HBox();
@@ -59,6 +56,9 @@ public class Accueil {
 		 titreQuiz.setRotate(12);
 		 // Ajout du texte à la Hbox
 		 hboxTitre.getChildren().addAll(titreGeo, titreQuiz);
+		 
+		 // bouton retour
+		 Node hboxMenu = Utils.returnToPreviousPage(this, root);
 		 
 		 // positionnement du menu par rapport au titre
 		 VBox menu = new VBox();
