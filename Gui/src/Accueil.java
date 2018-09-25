@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 // import javafx
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,15 +36,8 @@ public class Accueil {
 		 root.getChildren().clear();
 		 
 		 // définition des objets graphiques
-		 // ajout d'un bouton retour
-		 HBox hboxMenu = new HBox();
-		 hboxMenu.setAlignment(Pos.CENTER_RIGHT);
-		 Button boutonRetour = new Button();
-		 boutonRetour.setOnAction(value ->  {
-			 JOptionPane.showMessageDialog(null, "retour désiré");
-		 });
-		 boutonRetour.getStyleClass().add("buttonMenu");
-		 hboxMenu.getChildren().add(boutonRetour);
+		 // bouton retour
+		 Node hboxMenu = Utils.returnToPreviousPage(this, root);
 		 
 		 // ajout du titre "GeoQuiz" dans une HBox
 		 // création et positionnement de la HBox
