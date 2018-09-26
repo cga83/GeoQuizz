@@ -46,17 +46,17 @@ public class Serveur {
 				//communication avec le joueur			
 				DataInputStream entre = new DataInputStream(socket.getInputStream());
 				DataOutputStream sortie = new DataOutputStream(socket.getOutputStream());
-				
+				sortie.writeInt(numJoueur);
 				String nomJoueur = entre.readUTF();
 				
 				//Joueurs.add(new Users(entre, sortie, nomJoueur));
 				
 				System.out.println(nomJoueur+"connected"); 
-				sortie.writeInt(nbConn);
 				
 				
 				
-				ecouteClient(entre, sortie, numJoueur);
+				
+				//ecouteClient(entre, sortie, numJoueur);
 				
 				
 //				sortie.close(); TODO deconnection
