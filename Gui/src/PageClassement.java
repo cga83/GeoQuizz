@@ -1,6 +1,8 @@
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -42,6 +44,8 @@ public class PageClassement {
 		 boutonMeilleurScore.getStyleClass().add("buttonStyle1");
 		 hboxBoutons.getChildren().addAll(boutonTotal, boutonMeilleurScore);
 		 
+		 ImageView image = new ImageView(new Image("podium.png"));
+		 
 		 // affichage des scores
 		 FonctionsCSV csv = new FonctionsCSV();
 		 String[][] classement = csv.LireScoreG();
@@ -61,7 +65,7 @@ public class PageClassement {
 		 VBox vboxClassement = new VBox();
 		 vboxClassement.setAlignment(Pos.CENTER);
 		 vboxClassement.setSpacing(30);
-		 vboxClassement.getChildren().addAll(hboxBoutons, titre, texteClassement);
+		 vboxClassement.getChildren().addAll(hboxBoutons, image, titre, texteClassement);
 		 
 		 pane.setTop(menu);
 		 pane.setCenter(vboxClassement);

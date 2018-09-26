@@ -1,8 +1,8 @@
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -36,6 +36,7 @@ public class PageScores {
 		 titre.setFont(Font.font("Verdana", 25));
 		 titre.setTextAlignment(TextAlignment.CENTER);
 		 titre.setFill(Color.WHITE);
+		 ImageView image = new ImageView(new Image("meilleurscore.png"));
 		 Text texteClassement = new Text();
 		 String texte = "";
 		 for (int i = 0; i<classement.length; i++) {
@@ -48,7 +49,7 @@ public class PageScores {
 		 VBox vboxClassement = new VBox();
 		 vboxClassement.setAlignment(Pos.CENTER);
 		 vboxClassement.setSpacing(30);
-		 vboxClassement.getChildren().addAll(titre, texteClassement);
+		 vboxClassement.getChildren().addAll(titre, image, texteClassement);
 		 
 		 pane.setTop(menu);
 		 pane.setCenter(vboxClassement);
