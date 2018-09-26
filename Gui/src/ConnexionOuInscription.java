@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -31,6 +32,9 @@ public class ConnexionOuInscription {
 	 {
 		 // on enlève les éléments de la page précédente
 		 root.getChildren().clear();
+		 
+		 // creation d'un borderPane auquel on va ajouter les objets
+		 BorderPane pane = new BorderPane();
 	 
 		 // définition des objets graphiques
 		 // création du menu
@@ -41,9 +45,9 @@ public class ConnexionOuInscription {
 		 vboxPrincipal.setAlignment(Pos.CENTER);
 		 vboxPrincipal.setSpacing(30);
 		 Text titre = new Text(mode==Mode.CONNEXION? "Connecte-toi !": "Inscris toi!");
-		 titre.setFont(Font.font ("Lato", 50));
+		 titre.setFont(Font.font ("Lato", 30));
 		 titre.setTextAlignment(TextAlignment.CENTER);
-		 titre.setFill(Color.rgb(255,170,170));
+		 titre.setFill(Color.WHITE);
 
 		 // choix du serveur et du port
 		 HBox hboxPseudo = new HBox();
@@ -77,7 +81,10 @@ public class ConnexionOuInscription {
 		 
 		 vboxPrincipal.getChildren().addAll(menu, titre, hboxPseudo, hboxMdp, boutonValider);
 		 
-		 root.getChildren().addAll(vboxPrincipal);
+		 pane.setTop(menu);
+		 pane.setCenter(vboxPrincipal);
+		 
+		 root.getChildren().addAll(pane);
 		 
 	
 		// ajout de tous les objets à la racine (qui est reliée à primaryStage)
