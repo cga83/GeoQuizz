@@ -1,11 +1,11 @@
 import javax.swing.JOptionPane;
-import javafx.application.Application;
+
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
 public class ConnexionServeur {
 	// création de la racine
@@ -27,11 +26,14 @@ public class ConnexionServeur {
 	 // construction des objets que l'on va afficher
 	 void construireConnexionServeur()  
 	 {
+		 // creation d'un borderPane auquel on va ajouter les objets
+		 BorderPane pane = new BorderPane();
+				 
 		 // définition des objets graphiques
 		 // ajout de texte dans une vbox
 		 VBox vboxPrincipal = new VBox();
-		 vboxPrincipal.setAlignment(Pos.CENTER);
-		 vboxPrincipal.setSpacing(30);
+		 //vboxPrincipal.setAlignment(Pos.CENTER);
+		// vboxPrincipal.setSpacing(30);
 		 Text texteBienvenue = new Text("Bienvenue !");
 		 texteBienvenue.setFont(Font.font ("Lato", 50));
 		 texteBienvenue.setTextAlignment(TextAlignment.CENTER);
@@ -70,8 +72,18 @@ public class ConnexionServeur {
 			 new Accueil(root);
 		 });
 		 
-		 vboxPrincipal.getChildren().addAll(image, hboxServeur, hboxPort, boutonValider);
+		 VBox vboxChoix = new VBox();
+		 vboxChoix.getChildren().addAll(hboxServeur, hboxPort, boutonValider);
 		 
-		 root.getChildren().addAll(vboxPrincipal);    
+		 // on positionne les objets
+		 vboxPrincipal.setAlignment(Pos.CENTER);
+		 vboxPrincipal.setSpacing(15);
+		 pane.setTop(vboxPrincipal);
+		 vboxChoix.setAlignment(Pos.CENTER);
+		 vboxChoix.setSpacing(25);
+		 pane.setBottom(vboxChoix);
+		 pane.setCenter(image);
+		 
+		 root.getChildren().addAll(pane);    
 	}
 }
