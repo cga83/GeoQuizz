@@ -22,7 +22,8 @@ public class Main extends Application {
 	private static Joueur joueur;
  
 	 // lancement
-	 public static void main(String[] args, Joueur joueur) {
+	 public static void main(String[] args) {
+		// joueur = new Joueur(args);
 		 launch(args);
 	 }
 	 

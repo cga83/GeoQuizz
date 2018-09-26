@@ -32,7 +32,6 @@ public class ConnexionServeur {
 		 // définition des objets graphiques
 		 // ajout de texte dans une vbox
 		 VBox vboxPrincipal = new VBox();
-		 //vboxPrincipal.setAlignment(Pos.CENTER);
 		// vboxPrincipal.setSpacing(30);
 		 Text texteBienvenue = new Text("Bienvenue !");
 		 texteBienvenue.setFont(Font.font ("Lato", 50));
@@ -69,10 +68,16 @@ public class ConnexionServeur {
 			 String serveur = choixServeur.getText();
 			 int portInt = Integer.parseInt(port);
 			 String message = "Tentative de connexion sur le serveur " + serveur + " et sur le port " + port + ".";
-			 JOptionPane.showMessageDialog(null, message);
+			 //JOptionPane.showMessageDialog(null, message);
 			 
-			 //joueur.connectAuServeur(serveur,portInt);
-			 //new Accueil(root);
+			 boolean connected = joueur.connectAuServeur(serveur,portInt);
+			 if (connected) {
+				 new Accueil(root,joueur);
+			 } else {
+				 String message2 = "Tentative de connexion sur le serveur " + serveur + " et sur le port " + port + " a échouée.";
+				 JOptionPane.showMessageDialog(null, message);
+			 }
+			 
 		 });
 		 
 		 VBox vboxChoix = new VBox();

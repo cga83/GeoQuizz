@@ -9,12 +9,13 @@ import javafx.application.Application;
 
 public class Joueur  extends JFrame{
 
-	private static final String SERVEUR = "localhost";
-	private static final int PORT = 2000;
-	GuiTest gui;
+	//private static final String SERVEUR = "localhost";
+	//private static final int PORT = 2000;
+	
 	private DataInputStream entre;
 	private DataOutputStream sortie;
-	private Boolean connected = true;
+	private Boolean connected = false;
+	private String login = "";
 	
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub	
@@ -33,10 +34,10 @@ public class Joueur  extends JFrame{
 	}
 	
 	//se connect au serveur grace a l'ip et au port
-	void connectAuServeur(String server, int port) {
+	boolean connectAuServeur(String server, int port) {
 		try {
 			System.out.println("tentative de connection � "+ server + port);
-			Socket socket = new Socket(SERVEUR, PORT);
+			Socket socket = new Socket(server, port);
 			entre = new DataInputStream(socket.getInputStream());
 			sortie = new DataOutputStream(socket.getOutputStream());
 			int numJoueur = entre.readInt();
@@ -46,8 +47,9 @@ public class Joueur  extends JFrame{
 //			sortie.close();
 //			socket.close();
 			
-			
+			return true;
 		} catch (IOException e) {e.printStackTrace(); }
+		return false;
 	}
 	
 	

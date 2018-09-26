@@ -9,13 +9,13 @@ public class DemarrerJeu {
 	private StackPane root;
 	private String login;
 	
-	public DemarrerJeu(StackPane root, String login) {
+	public DemarrerJeu(StackPane root, String login,  Joueur joueur) {
 		this.root = root;
 		this.login = login;
-		construireDemarrerJeu();
+		construireDemarrerJeu(joueur);
 	}
 	
-	void construireDemarrerJeu() {
+	void construireDemarrerJeu( Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -24,17 +24,17 @@ public class DemarrerJeu {
 		 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // ajout de boutons
 		 VBox vboxBoutons = new VBox();
 		 Button boutonRegles = new Button("Règles du jeu");
 		 boutonRegles.setOnAction(value -> {
-			 new PageRegles(root, login);
+			 new PageRegles(root, login, joueur);
 		 });
 		 Button boutonDemarrer = new Button("Démarrer la partie");
 		 boutonDemarrer.setOnAction(value -> {
-			 new LancerQuestion(root, login);
+			// new LancerQuestion(root, login);
 		 });
 		 boutonRegles.getStyleClass().add("buttonStyle1");
 		 boutonDemarrer.getStyleClass().add("buttonStyle1");

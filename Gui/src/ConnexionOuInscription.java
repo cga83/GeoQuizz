@@ -21,14 +21,14 @@ public class ConnexionOuInscription {
 	private StackPane root;
 	private Mode mode;
 	
-	public ConnexionOuInscription(StackPane root, Mode mode) {
+	public ConnexionOuInscription(StackPane root, Mode mode,  Joueur joueur) {
 		this.root = root;
 		this.mode = mode;
-		construireConnexionOuInscription();
+		construireConnexionOuInscription(joueur);
 	}
 	 
 	 // construction des objets que l'on va afficher
-	 private void construireConnexionOuInscription()  
+	 private void construireConnexionOuInscription( Joueur joueur)  
 	 {
 		 // on enlève les éléments de la page précédente
 		 root.getChildren().clear();
@@ -38,7 +38,7 @@ public class ConnexionOuInscription {
 	 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // ajout de texte dans une vbox
 		 VBox vboxPrincipal = new VBox();
@@ -73,7 +73,7 @@ public class ConnexionOuInscription {
 			 JOptionPane.showMessageDialog(null, message);
 			 if (mode==Mode.CONNEXION) {
 				 // si la connexion a marché ...
-				 new PageJoueur(root, pseudo);
+				 new PageJoueur(root, pseudo, joueur);
 			 }
 			 else {
 				 // si l'inscription a marché, on redirige vers la page de connexion

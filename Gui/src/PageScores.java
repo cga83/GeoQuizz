@@ -14,13 +14,13 @@ public class PageScores {
 	private StackPane root;
 	private String login;
 	
-	public PageScores(StackPane root, String login) {
+	public PageScores(StackPane root, String login, Joueur joueur) {
 		this.root = root;
 		this.login = login;
-		construirePageScores();
+		construirePageScores(joueur);
 	}
 	
-	void construirePageScores() {
+	void construirePageScores(Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -29,7 +29,7 @@ public class PageScores {
 		 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // affichage des scores
 		 FonctionsCSV csv = new FonctionsCSV();

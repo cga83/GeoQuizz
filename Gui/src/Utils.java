@@ -40,7 +40,7 @@ public class Utils {
 		 return hboxMenu;
 	}
 	
-	public static Node createMenu(Object actualPage, StackPane root) {
+	public static Node createMenu(Object actualPage, StackPane root, Joueur joueur) {
 		 // ajout du titre "GeoQuiz" dans une HBox
 		 // création et positionnement de la HBox
 		 HBox hboxTitre = new HBox();
@@ -63,9 +63,8 @@ public class Utils {
 		 String login;
 		 // TO DO : get login from joueur
 		 login = "titi"; 
-		 Joueur njoueur = null ;
 		 // bouton retour
-		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login, njoueur);
+		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login, joueur);
 		 Node hboxMenuExit = exitApp();
 		 
 		 // positionnement du menu par rapport au titre
@@ -81,22 +80,22 @@ public class Utils {
 		if (actualPage instanceof Accueil)
 			new ConnexionServeur(root, joueur);
 		if (actualPage instanceof ConnexionOuInscription)
-			new Accueil(root);	
+			new Accueil(root, joueur);	
 		if (actualPage instanceof PageJoueur)
 			// TO DO : classe joueur -> fonction déco 
-			new Accueil(root);
+			new Accueil(root, joueur);
 		if (actualPage instanceof DemarrerJeu)
-			new PageJoueur(root, login);
+			new PageJoueur(root, login, joueur);
 		if (actualPage instanceof PageRegles)
-			new DemarrerJeu(root, login);
+			new DemarrerJeu(root, login, joueur);
 		if (actualPage instanceof PageClassement)
-			new PageJoueur(root, login);
+			new PageJoueur(root, login, joueur);
 		if (actualPage instanceof PageClassementMeilleurScore)
-			new PageJoueur(root, login);
+			new PageJoueur(root, login, joueur);
 		if (actualPage instanceof PageScores)
-			new PageJoueur(root, login);
-		if (actualPage instanceof LancerQuestion)
-			new DemarrerJeu(root, login);
+			new PageJoueur(root, login, joueur);
+		//if (actualPage instanceof LancerQuestion)
+			//new DemarrerJeu(root, login);
 		
 	}
 	

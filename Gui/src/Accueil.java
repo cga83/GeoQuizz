@@ -16,15 +16,15 @@ public class Accueil {
 	// création de la racine
 	private StackPane root;
  
-	public Accueil(StackPane root) {
+	public Accueil(StackPane root, Joueur joueur) {
 		 this.root = root;
 		 FonctionsCSV csv = new FonctionsCSV();
 		 csv.LireTab();
-		 construireAccueil();
+		 construireAccueil(joueur);
 	}
 	 
 	 // construction des objets que l'on va afficher
-	 private void construireAccueil()  
+	 private void construireAccueil(Joueur joueur)  
 	 {
 		 // on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
@@ -34,7 +34,7 @@ public class Accueil {
 		 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		
 		 // ajout d'une image
 		 ImageView geoImage = new ImageView(new Image("background.png"));
@@ -50,14 +50,14 @@ public class Accueil {
 		 Button boutonConnexion = new Button("Se connecter");
 		 // action sur le bouton
 		 boutonConnexion.setOnAction(value ->  {
-			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.CONNEXION);
+			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.CONNEXION, joueur);
 		 });
 		 // ajout d'une classe pour pouvoir utiliser le style css
 		 boutonConnexion.getStyleClass().add("buttonStyle1");
 		// ajout d'un bouton s'inscrire
 		Button boutonInscription = new Button("S'inscrire");
 		boutonInscription.setOnAction(value ->  {
-			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.INSCRIPTION);
+			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.INSCRIPTION, joueur);
 		});
 		boutonInscription.getStyleClass().add("buttonStyle1");
 		// ajout des boutons à la vbox

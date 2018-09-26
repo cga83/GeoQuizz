@@ -13,14 +13,14 @@ public class LancerQuestion {
 	private StackPane root;
 	private String login;
 	
-	public LancerQuestion(StackPane root, String login) {
+	public LancerQuestion(StackPane root, String login,  Joueur joueur) {
 		this.root = root;
 		this.login = login;
 		
-		construireQuestion();
+		construireQuestion(joueur);
 	}
 	
-	void construireQuestion() {
+	void construireQuestion( Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -29,7 +29,7 @@ public class LancerQuestion {
 		 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // TO DO : utiliser la fonction qui sera créé
 		 // si la fonction retourne { question, rep1 , rep2, rep3, bonne rep } c'est parfait sinon faudra modifier un peu

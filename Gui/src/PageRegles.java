@@ -8,12 +8,12 @@ import javafx.scene.text.TextAlignment;
 public class PageRegles {
 	private StackPane root;
 	
-	public PageRegles(StackPane root, String login) {
+	public PageRegles(StackPane root, String login, Joueur joueur) {
 		this.root = root;
-		construirePageRegles();
+		construirePageRegles(joueur);
 	}
 	
-	void construirePageRegles() {
+	void construirePageRegles( Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -22,7 +22,7 @@ public class PageRegles {
 		 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		 String texte = "Les règles de GeoQuiz sont simples !\nPlusieurs questions de géographie vont t'être posé.\nPour chaque questions, tu auras quatre possibilités.\nSi tu réponds correctement, tu marques des points !\nAttention, le temps pour chaque question est limité...";
 		 Text regles = new Text(texte);
 		 regles.setFont(Font.font ("Verdana", 15));

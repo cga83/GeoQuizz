@@ -14,13 +14,13 @@ public class PageClassement {
 	private StackPane root;
 	private String login;
 	
-	public PageClassement(StackPane root, String login) {
+	public PageClassement(StackPane root, String login,  Joueur joueur) {
 		this.root = root;
 		this.login = login;
-		construirePageClassement();
+		construirePageClassement(joueur);
 	}
 	
-	void construirePageClassement() {
+	void construirePageClassement( Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -29,7 +29,7 @@ public class PageClassement {
 		 
 		 // définition des objets graphiques
 		 // création du menu
-		 Node menu = Utils.createMenu(this, root);
+		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // création de deux boutons pour afficher les meilleurs scores de deux manières différentes
 		 HBox hboxBoutons = new HBox();
@@ -38,7 +38,7 @@ public class PageClassement {
 		 Button boutonTotal = new Button("Score total");
 		 Button boutonMeilleurScore = new Button("Meilleur score");
 		 boutonMeilleurScore.setOnAction(value -> {
-			 new PageClassementMeilleurScore(root, login);
+			 new PageClassementMeilleurScore(root, login, joueur);
 		 });
 		 boutonTotal.getStyleClass().add("buttonStyle2");
 		 boutonMeilleurScore.getStyleClass().add("buttonStyle1");
