@@ -40,6 +40,9 @@ public class PageJoueur {
 			 new PageClassement(root, login);
 		 });
 		 Button boutonScores = new Button("Scores");
+		 boutonScores.setOnAction(value ->  {
+			 new PageScores(root, login);
+		 });
 		 Button boutonNouveauJeu = new Button("Nouvelle partie");
 		 boutonNouveauJeu.setOnAction(value ->  {
 			 new DemarrerJeu(root, login);

@@ -60,7 +60,7 @@ public class Utils {
 		 
 		 String login;
 		 // TO DO : get login from joueur
-		 login = "Caro"; 
+		 login = "titi"; 
 		 // bouton retour
 		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login);
 		 Node hboxMenuExit = exitApp();
@@ -87,6 +87,10 @@ public class Utils {
 		if (actualPage instanceof PageRegles)
 			new DemarrerJeu(root, login);
 		if (actualPage instanceof PageClassement)
+			new PageJoueur(root, login);
+		if (actualPage instanceof PageClassementMeilleurScore)
+			new PageJoueur(root, login);
+		if (actualPage instanceof PageScores)
 			new PageJoueur(root, login);
 		
 	}
