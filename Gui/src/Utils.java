@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -92,6 +94,23 @@ public class Utils {
 			new PageJoueur(root, login);
 		if (actualPage instanceof PageScores)
 			new PageJoueur(root, login);
+		if (actualPage instanceof LancerQuestion)
+			new DemarrerJeu(root, login);
 		
+	}
+	
+	public static String[] shuffleArray(String[] array)
+	{
+	    int index;
+	    String temp;
+	    Random random = new Random();
+	    for (int i = array.length - 1; i > 0; i--)
+	    {
+	        index = random.nextInt(i + 1);
+	        temp = array[index];
+	        array[index] = array[i];
+	        array[i] = temp;
+	    }
+	    return array;
 	}
 }

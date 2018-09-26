@@ -33,6 +33,9 @@ public class DemarrerJeu {
 			 new PageRegles(root, login);
 		 });
 		 Button boutonDemarrer = new Button("Démarrer la partie");
+		 boutonDemarrer.setOnAction(value -> {
+			 new LancerQuestion(root, login);
+		 });
 		 boutonRegles.getStyleClass().add("buttonStyle1");
 		 boutonDemarrer.getStyleClass().add("buttonStyle1");
 		 vboxBoutons.getChildren().addAll(boutonRegles, boutonDemarrer);
