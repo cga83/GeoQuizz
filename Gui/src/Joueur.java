@@ -5,8 +5,6 @@ import java.net.Socket;
 
 import javax.swing.JFrame;
 
-import javafx.application.Application;
-
 public class Joueur  extends JFrame{
 
 	//private static final String SERVEUR = "localhost";
