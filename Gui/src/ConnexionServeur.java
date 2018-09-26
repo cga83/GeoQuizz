@@ -20,11 +20,11 @@ public class ConnexionServeur {
 	 public ConnexionServeur(StackPane root) {
 		 this.root = root;
 		 root.getChildren().clear();
-		 construireConnexionServeur();
+		 construireConnexionServeur(joueur);
 	 }
 	 
 	 // construction des objets que l'on va afficher
-	 void construireConnexionServeur()  
+	 void construireConnexionServeur(Joueur joueur)  
 	 {
 		 // creation d'un borderPane auquel on va ajouter les objets
 		 BorderPane pane = new BorderPane();
@@ -67,9 +67,12 @@ public class ConnexionServeur {
 		 boutonValider.setOnAction(value ->  {
 			 String port = choixPort.getText();
 			 String serveur = choixServeur.getText();
+			 int portInt = Integer.parseInt(port);
 			 String message = "Tentative de connexion sur le serveur " + serveur + " et sur le port " + port + ".";
 			 JOptionPane.showMessageDialog(null, message);
-			 new Accueil(root);
+			 
+			 //joueur.connectAuServeur(serveur,portInt);
+			 //new Accueil(root);
 		 });
 		 
 		 VBox vboxChoix = new VBox();

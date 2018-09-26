@@ -11,12 +11,12 @@ import javafx.scene.text.Text;
 
 // fonctions utilitaires
 public class Utils {
-	public static Node returnToPreviousPage(Object actualPage, StackPane root, String login) {
+	public static Node returnToPreviousPage(Object actualPage, StackPane root, String login, Joueur joueur) {
 		 HBox hboxMenu = new HBox();
 		 hboxMenu.setAlignment(Pos.TOP_RIGHT);
 		 Button boutonRetour = new Button();
 		 boutonRetour.setOnAction(value ->  {
-			 runPreviousPage(actualPage, root, login);
+			 runPreviousPage(actualPage, root, login, joueur);
 		 });
 		 boutonRetour.getStyleClass().add("buttonMenu");
 		 hboxMenu.getChildren().add(boutonRetour);
@@ -61,8 +61,9 @@ public class Utils {
 		 String login;
 		 // TO DO : get login from joueur
 		 login = "titi"; 
+		 Joueur njoueur = null ;
 		 // bouton retour
-		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login);
+		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login, njoueur);
 		 Node hboxMenuExit = exitApp();
 		 
 		 // positionnement du menu par rapport au titre
@@ -74,9 +75,9 @@ public class Utils {
 		 return menu;
 	}
 	
-	private static void runPreviousPage(Object actualPage, StackPane root, String login) { // TO DO : le login sera stocké dans la classe joueur
+	private static void runPreviousPage(Object actualPage, StackPane root, String login, Joueur joueur) { // TO DO : le login sera stocké dans la classe joueur
 		if (actualPage instanceof Accueil)
-			new ConnexionServeur(root);
+			new ConnexionServeur(root, joueur);
 		if (actualPage instanceof ConnexionOuInscription)
 			new Accueil(root);	
 		if (actualPage instanceof PageJoueur)

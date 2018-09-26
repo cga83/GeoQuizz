@@ -19,14 +19,16 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	// création de la racine
 	private static StackPane root;
+	private static Joueur joueur;
  
 	 // lancement
-	 public static void main(String[] args) {
+	 public static void main(String[] args, Joueur joueur) {
 		 launch(args);
 	 }
 	 
 	 // lancement de l'application
 	 public void start(Stage primaryStage) {
+		 joueur = new Joueur();
 		 construireScene(primaryStage);
 	 }
 	 
@@ -49,7 +51,7 @@ public class Main extends Application {
 		 primaryStage.setScene(scene);
 		 
 		 // création de la première page de l'application
-		 new ConnexionServeur(root);
+		 new ConnexionServeur(root, joueur);
 		 
 	    //afficher la scène
 	    primaryStage.show();      

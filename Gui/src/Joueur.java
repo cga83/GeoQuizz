@@ -5,6 +5,8 @@ import java.net.Socket;
 
 import javax.swing.JFrame;
 
+import javafx.application.Application;
+
 public class Joueur  extends JFrame{
 
 	private static final String SERVEUR = "localhost";
@@ -14,16 +16,18 @@ public class Joueur  extends JFrame{
 	private DataOutputStream sortie;
 	private Boolean connected = true;
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub	
-		new Joueur();
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub	
+//		 Application.launch(Main.class, args);
+//		//new Joueur(args);
+//		
+//	}
 	
 	Joueur() {
-		gui = new GuiTest(this);
-		setContentPane(gui);
-		pack();
-		setVisible(true);
+//		gui = new GuiTest(this);
+//		setContentPane(gui);
+//		pack();
+//		setVisible(true);
 		System.out.println("Demarrage client");
 	
 	}
