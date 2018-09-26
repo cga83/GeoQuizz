@@ -56,7 +56,7 @@ public class Serveur {
 				
 				
 				
-				//ecouteClient(entre, sortie, numJoueur);
+				ecouteClient(entre, sortie, numJoueur);
 				
 				
 //				sortie.close(); TODO deconnection
@@ -89,7 +89,7 @@ public class Serveur {
 	}
 	
 	boolean connexion(String pseudo, String mdp) {
-		String mdpExistant;
+		String mdpExistant = "test";
 		//mdpExistant = ChercherUtilisateur(pseudo)
 		mdpExistant = "test"; // TODO remplacer par ligne d'au dessus
 		if (mdpExistant == null) {

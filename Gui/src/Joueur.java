@@ -75,6 +75,27 @@ public class Joueur extends JFrame{
 			return false;//afficher mauvais couple pseudo/mdp
 		}		
 	}
+	
+	boolean inscrire(String pseudo, String mdp) {
+		boolean valide = false; 
+		//envoie login mdp au serveur
+		try {
+			sortie.writeInt(2); //1 correspond a l'inscription
+			sortie.writeUTF(pseudo);
+			sortie.writeUTF(mdp);
+			valide = entre.readBoolean(); // le serveur renvoie true ou false
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+		if (valide) {
+			login = pseudo;
+			authenticated = true;
+			return true; // afficher page jeu
+		} else {
+			return false;//afficher mauvais couple pseudo/mdp
+		}		
+	}
 
 	
 }
