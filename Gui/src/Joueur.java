@@ -28,7 +28,7 @@ public class Joueur  extends JFrame{
 	
 	}
 	
-	//se connect au serveur grace � l'ip et au port
+	//se connect au serveur grace a l'ip et au port
 	void connectAuServeur(String server, int port) {
 		try {
 			System.out.println("tentative de connection � "+ server + port);
@@ -36,7 +36,7 @@ public class Joueur  extends JFrame{
 			entre = new DataInputStream(socket.getInputStream());
 			sortie = new DataOutputStream(socket.getOutputStream());
 			int numJoueur = entre.readInt();
-			System.out.println("Joueur n�: "+numJoueur);
+			System.out.println("Joueur n: "+numJoueur);
 			
 //			entre.close();
 //			sortie.close();
@@ -47,7 +47,7 @@ public class Joueur  extends JFrame{
 	}
 	
 	
-//	//s'indentifie grace � son pseudo et son mdp
+//	//s'indentifie grace a son pseudo et son mdp
 	void connectAuJeu(String pseudo, String mdp) {
 		boolean valide = false; 
 		//envoyer login mdp au serveur
