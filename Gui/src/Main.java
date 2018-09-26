@@ -1,34 +1,23 @@
-import javax.swing.JOptionPane;
-
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 	// création de la racine
 	private static StackPane root;
 	private static Joueur joueur;
+	private static Stage primaryStage;
  
 	 // lancement
 	 public static void main(String[] args) {
-		// joueur = new Joueur(args);
 		 launch(args);
 	 }
 	 
 	 // lancement de l'application
 	 public void start(Stage primaryStage) {
+		 this.primaryStage = primaryStage;
 		 joueur = new Joueur();
 		 construireScene(primaryStage);
 	 }
@@ -57,4 +46,8 @@ public class Main extends Application {
 	    //afficher la scène
 	    primaryStage.show();      
 	}
+	 
+	 public static Stage getStage() {
+		 return primaryStage;
+	 }
 }

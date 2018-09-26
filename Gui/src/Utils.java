@@ -1,15 +1,18 @@
 import java.util.Random;
 
 import javafx.application.Platform;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 // fonctions utilitaires
 public class Utils {
@@ -112,5 +115,19 @@ public class Utils {
 	        array[i] = temp;
 	    }
 	    return array;
+	}
+	
+	public static void createPopup(String message) {
+		  Popup popup = new Popup();
+		  String text = message;
+		  HBox hboxPopup = new HBox();
+		  Text textLabel = new Text(message);
+		  hboxPopup.getChildren().add(textLabel);
+		  hboxPopup.setStyle("-fx-background-color: rgb(255,170,170); -fx-border-color:black; -fx-font-size: 12; -fx-padding: 15;");
+		  popup.setAutoHide(true);
+		  popup.setAutoFix(true);
+		  // Calculate popup placement coordinates.
+		  popup.getContent().addAll(hboxPopup);
+		  popup.show(Main.getStage());
 	}
 }

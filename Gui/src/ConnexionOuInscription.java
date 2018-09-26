@@ -1,7 +1,5 @@
 // TO DO : récupérer un argument "I" ou "C" et en fonction afficher un titre différent et traiter la suite différement
 
-import javax.swing.JOptionPane;
-
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -70,7 +68,7 @@ public class ConnexionOuInscription {
 			 String mdp = choixMdp.getText();
 			 String pseudo = choixPseudo.getText();
 			 String message = "Tentative de connexion de " + pseudo + " avec le mdp " + mdp + ".";
-			 JOptionPane.showMessageDialog(null, message);
+			 Utils.createPopup(message); 
 			 if (mode==Mode.CONNEXION) {
 				 // si la connexion a marché ...
 				 new PageJoueur(root, pseudo, joueur);
