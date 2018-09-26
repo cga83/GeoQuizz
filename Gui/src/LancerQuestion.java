@@ -32,6 +32,7 @@ public class LancerQuestion {
 		 Node menu = Utils.createMenu(this, root);
 		 
 		 // TO DO : utiliser la fonction qui sera créé
+		 // si la fonction retourne { question, rep1 , rep2, rep3, bonne rep } c'est parfait sinon faudra modifier un peu
 		 String[] questionReponses = {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
 		 String[] reponses = { questionReponses[1], questionReponses[2], questionReponses[3], questionReponses[4] };
 		 reponses = Utils.shuffleArray(reponses);
@@ -49,9 +50,57 @@ public class LancerQuestion {
 		 question.setTextAlignment(TextAlignment.CENTER);
 		 question.setFill(Color.WHITE);
 		 Button reponse1 = new Button(reponses[0]);
+		 reponse1.setOnAction(value -> {
+			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
+			 if (reponse1.getText().equals(questionReponses[4])) {
+			 	reponse1.setStyle("-fx-background-color: green;");
+			 	// score augmente
+			 	// on passe à la question suivante
+			 }
+			 else {
+				 reponse1.setStyle("-fx-background-color: red;");
+				 // on passe à la question suivante
+			 }
+		 });
 		 Button reponse2 = new Button(reponses[1]);
+		 reponse2.setOnAction(value -> {
+			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
+			 if (reponse2.getText().equals(questionReponses[4])) {
+			 	reponse2.setStyle("-fx-background-color: green;");
+			 	// score augmente
+			 	// on passe à la question suivante
+			 }
+			 else {
+				 reponse2.setStyle("-fx-background-color: red;");
+				 // on passe à la question suivante
+			 }
+		 });
 		 Button reponse3 = new Button(reponses[2]);
+		 reponse3.setOnAction(value -> {
+			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
+			 if (reponse3.getText().equals(questionReponses[4])) {
+			 	reponse3.setStyle("-fx-background-color: green;");
+			 	// score augmente
+			 	// on passe à la question suivante
+			 }
+			 else {
+				 reponse3.setStyle("-fx-background-color: red;");
+				 // on passe à la question suivante
+			 }
+		 });
 		 Button reponse4 = new Button(reponses[3]);
+		 reponse4.setOnAction(value -> {
+			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
+			 if (reponse4.getText().equals(questionReponses[4])) {
+			 	reponse4.setStyle("-fx-background-color: green;");
+			 	// score augmente
+			 	// on passe à la question suivante
+			 }
+			 else {
+				 reponse4.setStyle("-fx-background-color: red;");
+				 // on passe à la question suivante
+			 }
+		 });
 		 reponse1.getStyleClass().add("buttonStyle1");
 		 reponse2.getStyleClass().add("buttonStyle1");
 		 reponse3.getStyleClass().add("buttonStyle1");
