@@ -68,14 +68,14 @@ public class ConnexionServeur {
 			 String serveur = choixServeur.getText();
 			 int portInt = Integer.parseInt(port);
 			 String message = "Tentative de connexion sur le serveur " + serveur + " et sur le port " + port + ".";
-			 //JOptionPane.showMessageDialog(null, message);
+			 JOptionPane.showMessageDialog(null, message);
 			 
 			 boolean connected = joueur.connectAuServeur(serveur,portInt);
 			 if (connected) {
 				 new Accueil(root,joueur);
 			 } else {
 				 String message2 = "Tentative de connexion sur le serveur " + serveur + " et sur le port " + port + " a échouée.";
-				 JOptionPane.showMessageDialog(null, message);
+				 JOptionPane.showMessageDialog(null, message2);
 			 }
 			 
 		 });
