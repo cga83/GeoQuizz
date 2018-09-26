@@ -33,6 +33,9 @@ public class ConnexionOuInscription {
 		 root.getChildren().clear();
 	 
 		 // définition des objets graphiques
+		 // création du menu
+		 Node menu = Utils.createMenu(this, root);
+		 
 		 // ajout de texte dans une vbox
 		 VBox vboxPrincipal = new VBox();
 		 vboxPrincipal.setAlignment(Pos.CENTER);
@@ -41,13 +44,6 @@ public class ConnexionOuInscription {
 		 titre.setFont(Font.font ("Lato", 50));
 		 titre.setTextAlignment(TextAlignment.CENTER);
 		 titre.setFill(Color.rgb(255,170,170));
-		 
-		// bouton retour
-		Node hboxMenu = Utils.returnToPreviousPage(this, root);
-				 
-		 // positionnement du menu par rapport au titre
-		 VBox menu = new VBox();
-		 menu.getChildren().addAll(hboxMenu, titre);
 
 		 // choix du serveur et du port
 		 HBox hboxPseudo = new HBox();
@@ -79,7 +75,7 @@ public class ConnexionOuInscription {
 			 }
 		 });
 		 
-		 vboxPrincipal.getChildren().addAll(menu, hboxPseudo, hboxMdp, boutonValider);
+		 vboxPrincipal.getChildren().addAll(menu, titre, hboxPseudo, hboxMdp, boutonValider);
 		 
 		 root.getChildren().addAll(vboxPrincipal);
 		 

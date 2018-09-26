@@ -1,6 +1,6 @@
 .root{
 	-fx-background-color: rgb(15,181,94);
-	-fx-padding: 50px;
+	-fx-padding: 50 5 50 5;
 	-fx-border-color: rgb(255,170,170);
 	-fx-border-width: 5px;
 }
@@ -43,4 +43,22 @@
 
 .buttonMenu:pressed{
 	-fx-background-image: url("retourHover.png");
+}
+
+.buttonExit{
+	-fx-background-color: none;
+	-fx-background-image: url("exit.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: stretch;  
+    -fx-background-size: 50 50;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px; 
+}
+
+.buttonExit:hover{
+	-fx-background-image: url("exitHover.png");
+}
+
+.buttonExit:pressed{
+	-fx-background-image: url("exitHover.png");
 }
