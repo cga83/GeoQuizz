@@ -5,40 +5,42 @@ import java.net.Socket;
 
 import javax.swing.JFrame;
 
-public class Joueur  extends JFrame{
+public class Joueur extends JFrame{
 
 	//private static final String SERVEUR = "localhost";
 	//private static final int PORT = 2000;
-	
+	private Socket socket;
 	private DataInputStream entre;
 	private DataOutputStream sortie;
-	private Boolean connected = false;
+	private boolean connected = false;
 	private String login = "";
-	
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub	
-//		 Application.launch(Main.class, args);
-//		//new Joueur(args);
-//		
-//	}
+	private boolean authenticated = false;	
 	
 	Joueur() {
-//		gui = new GuiTest(this);
-//		setContentPane(gui);
-//		pack();
-//		setVisible(true);
-		System.out.println("Demarrage client");
-	
+		System.out.println("Demarrage joueur");
 	}
 	
-	//se connect au serveur grace a l'ip et au port
+	DataInputStream getEntree() {
+		return entre;
+	}
+	
+	DataOutputStream getSortie() {
+		return sortie;
+	}
+
+	String getLogin() {
+		return login;
+	}
+	
+//se connecte au serveur grace a l'ip et au port
 	boolean connectAuServeur(String server, int port) {
 		try {
-			System.out.println("tentative de connection ï¿½ "+ server + port);
-			Socket socket = new Socket(server, port);
+			System.out.println("tentative de connection à "+ server + port);
+			socket = new Socket(server, port);
 			entre = new DataInputStream(socket.getInputStream());
 			sortie = new DataOutputStream(socket.getOutputStream());
 			int numJoueur = entre.readInt();
+			connected = true;
 			System.out.println("Joueur n: "+numJoueur);
 			
 //			entre.close();
@@ -51,8 +53,8 @@ public class Joueur  extends JFrame{
 	}
 	
 	
-//	//s'indentifie grace a son pseudo et son mdp
-	void connectAuJeu(String pseudo, String mdp) {
+//s'indentifie grace a son pseudo et son mdp
+	boolean connectAuJeu(String pseudo, String mdp) {
 		boolean valide = false; 
 		//envoyer login mdp au serveur
 		try {
@@ -61,18 +63,18 @@ public class Joueur  extends JFrame{
 			sortie.writeUTF(mdp);
 			valide = entre.readBoolean(); // le serveur renvoie true ou false
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
 		if (valide) {
-			// afficher page jeu
+			login = pseudo;
+			authenticated = true;
+			return true; // afficher page jeu
 		} else {
-			//afficher mauvais couple pseudo/mdp
-		}
-	
-		
-		
-		
+			return false;//afficher mauvais couple pseudo/mdp
+		}		
 	}
+
+	
 }
+
