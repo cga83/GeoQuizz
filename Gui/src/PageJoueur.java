@@ -36,6 +36,9 @@ public class PageJoueur {
 		 // ajout de boutons
 		 VBox vboxBoutons = new VBox();
 		 Button boutonClassement = new Button("Classement");
+		 boutonClassement.setOnAction(value ->  {
+			 new PageClassement(root, login);
+		 });
 		 Button boutonScores = new Button("Scores");
 		 Button boutonNouveauJeu = new Button("Nouvelle partie");
 		 boutonNouveauJeu.setOnAction(value ->  {

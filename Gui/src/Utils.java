@@ -86,6 +86,8 @@ public class Utils {
 			new PageJoueur(root, login);
 		if (actualPage instanceof PageRegles)
 			new DemarrerJeu(root, login);
+		if (actualPage instanceof PageClassement)
+			new PageJoueur(root, login);
 		
 	}
 }

@@ -62,3 +62,16 @@
 .buttonExit:pressed{
 	-fx-background-image: url("exitHover.png");
 }
+
+.buttonStyle2{
+	-fx-background-color: rgb(44,137,160);
+	-fx-border-color: rgb(124,183,237);
+	-fx-border-width: 3px;
+	-fx-border-radius: 5px;
+	-fx-background-radius: 5px;
+	-fx-pref-width: 200px;
+	-fx-pref-height: 50px;
+	-fx-text-fill: white;
+	-fx-font-size: 20px;
+}
+
