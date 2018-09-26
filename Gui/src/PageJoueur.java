@@ -1,12 +1,16 @@
+import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class PageJoueur {
 	private StackPane root;
@@ -28,10 +32,13 @@ public class PageJoueur {
 		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // ajout d'un texte
+		 VBox vboxCenter = new VBox();
 		 String texte = "Salut " + joueur.getLogin() + " !";
 		 Text textePage = new Text(texte);
 		 textePage.setFill(Color.WHITE);
 		 textePage.setFont(Font.font ("Verdana", 30));
+		 ImageView image = new ImageView(new Image("perso.png"));
+		 vboxCenter.getChildren().addAll(textePage, image);
 		 
 		 // ajout de boutons
 		 VBox vboxBoutons = new VBox();
@@ -54,10 +61,18 @@ public class PageJoueur {
 		 
 		 // positionnement des objets
 		 pane.setTop(menu);
-		 pane.setCenter(textePage);
+		 pane.setCenter(vboxCenter);
+		 vboxCenter.setAlignment(Pos.CENTER);
+		 vboxCenter.setSpacing(20);
 		 vboxBoutons.setAlignment(Pos.CENTER);
 		 vboxBoutons.setSpacing(30);
 		 pane.setBottom(vboxBoutons);
+		 
+	    // ajout d'une transition sur l'opacité de l'image
+	    FadeTransition transitionImage = new FadeTransition(Duration.millis(3000), image);
+	    transitionImage.setFromValue(0.01);
+	    transitionImage.setToValue(0.8);
+	    transitionImage.play(); 
 		 
 		 // ajout à la racine
 		 root.getChildren().addAll(pane);
