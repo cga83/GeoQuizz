@@ -11,12 +11,12 @@ import javafx.scene.text.Text;
 public class PageJoueur {
 	private StackPane root;
 	
-	public PageJoueur(StackPane root, String login, Joueur joueur) {
+	public PageJoueur(StackPane root,Joueur joueur) {
 		this.root = root;
-		construirePageJoueur(login, joueur);
+		construirePageJoueur(joueur);
 	}
 	
-	void construirePageJoueur(String login, Joueur joueur) {
+	void construirePageJoueur(Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -28,7 +28,7 @@ public class PageJoueur {
 		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // ajout d'un texte
-		 String texte = "Salut " + login + " !";
+		 String texte = "Salut " + joueur.getLogin() + " !";
 		 Text textePage = new Text(texte);
 		 textePage.setFill(Color.WHITE);
 		 textePage.setFont(Font.font ("Verdana", 30));
@@ -37,15 +37,15 @@ public class PageJoueur {
 		 VBox vboxBoutons = new VBox();
 		 Button boutonClassement = new Button("Classement");
 		 boutonClassement.setOnAction(value ->  {
-			 new PageClassement(root, login,joueur);
+			 new PageClassement(root, joueur);
 		 });
 		 Button boutonScores = new Button("Scores");
 		 boutonScores.setOnAction(value ->  {
-			 new PageScores(root, login, joueur);
+			 new PageScores(root, joueur);
 		 });
 		 Button boutonNouveauJeu = new Button("Nouvelle partie");
 		 boutonNouveauJeu.setOnAction(value ->  {
-			 new DemarrerJeu(root, login, joueur);
+			 new DemarrerJeu(root, joueur);
 		 });
 		 boutonClassement.getStyleClass().add("buttonStyle1");
 		 boutonScores.getStyleClass().add("buttonStyle1");

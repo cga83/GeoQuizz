@@ -16,12 +16,12 @@ import javafx.stage.Popup;
 
 // fonctions utilitaires
 public class Utils {
-	public static Node returnToPreviousPage(Object actualPage, StackPane root, String login, Joueur joueur) {
+	public static Node returnToPreviousPage(Object actualPage, StackPane root, Joueur joueur) {
 		 HBox hboxMenu = new HBox();
 		 hboxMenu.setAlignment(Pos.TOP_RIGHT);
 		 Button boutonRetour = new Button();
 		 boutonRetour.setOnAction(value ->  {
-			 runPreviousPage(actualPage, root, login, joueur);
+			 runPreviousPage(actualPage, root, joueur);
 		 });
 		 boutonRetour.getStyleClass().add("buttonMenu");
 		 hboxMenu.getChildren().add(boutonRetour);
@@ -67,7 +67,7 @@ public class Utils {
 		 // TO DO : get login from joueur
 		 login = "titi"; 
 		 // bouton retour
-		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login, joueur);
+		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, joueur);
 		 Node hboxMenuExit = exitApp();
 		 
 		 // positionnement du menu par rapport au titre
@@ -79,7 +79,7 @@ public class Utils {
 		 return menu;
 	}
 	
-	private static void runPreviousPage(Object actualPage, StackPane root, String login, Joueur joueur) { // TO DO : le login sera stocké dans la classe joueur
+	private static void runPreviousPage(Object actualPage, StackPane root, Joueur joueur) { // TO DO : le login sera stocké dans la classe joueur
 		if (actualPage instanceof Accueil)
 			new ConnexionServeur(root, joueur);
 		if (actualPage instanceof ConnexionOuInscription)
@@ -88,17 +88,17 @@ public class Utils {
 			// TO DO : classe joueur -> fonction déco 
 			new Accueil(root, joueur);
 		if (actualPage instanceof DemarrerJeu)
-			new PageJoueur(root, login, joueur);
+			new PageJoueur(root, joueur);
 		if (actualPage instanceof PageRegles)
-			new DemarrerJeu(root, login, joueur);
+			new DemarrerJeu(root, joueur);
 		if (actualPage instanceof PageClassement)
-			new PageJoueur(root, login, joueur);
+			new PageJoueur(root, joueur);
 		if (actualPage instanceof PageClassementMeilleurScore)
-			new PageJoueur(root, login, joueur);
+			new PageJoueur(root, joueur);
 		if (actualPage instanceof PageScores)
-			new PageJoueur(root, login, joueur);
+			new PageJoueur(root, joueur);
 		if (actualPage instanceof LancerQuestion)
-			new DemarrerJeu(root, login, joueur);
+			new DemarrerJeu(root, joueur);
 		
 	}
 	
@@ -119,7 +119,6 @@ public class Utils {
 	
 	public static void createPopup(String message) {
 		  Popup popup = new Popup();
-		  String text = message;
 		  HBox hboxPopup = new HBox();
 		  Text textLabel = new Text(message);
 		  hboxPopup.getChildren().add(textLabel);

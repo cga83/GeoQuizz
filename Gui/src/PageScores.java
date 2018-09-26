@@ -12,11 +12,9 @@ import javafx.scene.text.TextAlignment;
 
 public class PageScores {
 	private StackPane root;
-	private String login;
 	
-	public PageScores(StackPane root, String login, Joueur joueur) {
+	public PageScores(StackPane root, Joueur joueur) {
 		this.root = root;
-		this.login = login;
 		construirePageScores(joueur);
 	}
 	
@@ -33,7 +31,7 @@ public class PageScores {
 		 
 		 // affichage des scores
 		 FonctionsCSV csv = new FonctionsCSV();
-		 String[] classement = csv.LireScore("titi"); // TO DO : mettre le login de manière dynamique
+		 String[] classement = csv.LireScore(joueur.getLogin()); // TO DO : mettre le login de manière dynamique
 		 Text titre = new Text("Meilleurs scores");
 		 titre.setFont(Font.font("Verdana", 25));
 		 titre.setTextAlignment(TextAlignment.CENTER);

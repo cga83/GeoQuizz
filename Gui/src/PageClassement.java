@@ -12,11 +12,9 @@ import javafx.scene.text.TextAlignment;
 
 public class PageClassement {
 	private StackPane root;
-	private String login;
 	
-	public PageClassement(StackPane root, String login,  Joueur joueur) {
+	public PageClassement(StackPane root, Joueur joueur) {
 		this.root = root;
-		this.login = login;
 		construirePageClassement(joueur);
 	}
 	
@@ -38,7 +36,7 @@ public class PageClassement {
 		 Button boutonTotal = new Button("Score total");
 		 Button boutonMeilleurScore = new Button("Meilleur score");
 		 boutonMeilleurScore.setOnAction(value -> {
-			 new PageClassementMeilleurScore(root, login, joueur);
+			 new PageClassementMeilleurScore(root, joueur);
 		 });
 		 boutonTotal.getStyleClass().add("buttonStyle2");
 		 boutonMeilleurScore.getStyleClass().add("buttonStyle1");

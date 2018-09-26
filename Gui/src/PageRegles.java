@@ -8,12 +8,12 @@ import javafx.scene.text.TextAlignment;
 public class PageRegles {
 	private StackPane root;
 	
-	public PageRegles(StackPane root, String login, Joueur joueur) {
+	public PageRegles(StackPane root, Joueur joueur) {
 		this.root = root;
 		construirePageRegles(joueur);
 	}
 	
-	void construirePageRegles( Joueur joueur) {
+	void construirePageRegles(Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 

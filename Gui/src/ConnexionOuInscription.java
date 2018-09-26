@@ -71,7 +71,8 @@ public class ConnexionOuInscription {
 			 Utils.createPopup(message); 
 			 if (mode==Mode.CONNEXION) {
 				 // si la connexion a marché ...
-				 new PageJoueur(root, pseudo, joueur);
+				 // on peut setter le login du joueur
+				 new PageJoueur(root, joueur);
 			 }
 			 else {
 				 // si l'inscription a marché, on redirige vers la page de connexion

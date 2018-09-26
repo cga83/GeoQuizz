@@ -18,6 +18,7 @@ public class Joueur extends JFrame{
 	
 	Joueur() {
 		System.out.println("Demarrage joueur");
+		login = "titi"; // à modifier, juste pour tester
 	}
 	
 	DataInputStream getEntree() {

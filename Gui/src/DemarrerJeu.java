@@ -7,15 +7,13 @@ import javafx.scene.layout.VBox;
 
 public class DemarrerJeu {
 	private StackPane root;
-	private String login;
 	
-	public DemarrerJeu(StackPane root, String login,  Joueur joueur) {
+	public DemarrerJeu(StackPane root, Joueur joueur) {
 		this.root = root;
-		this.login = login;
 		construireDemarrerJeu(joueur);
 	}
 	
-	void construireDemarrerJeu( Joueur joueur) {
+	void construireDemarrerJeu(Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -30,12 +28,12 @@ public class DemarrerJeu {
 		 VBox vboxBoutons = new VBox();
 		 Button boutonRegles = new Button("Règles du jeu");
 		 boutonRegles.setOnAction(value -> {
-			 new PageRegles(root, login, joueur);
+			 new PageRegles(root, joueur);
 		 });
 		 Button boutonDemarrer = new Button("Démarrer la partie");
 		 boutonDemarrer.setOnAction(value -> {
 			 String[] questionReponsesRound1 = {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
-			 new LancerQuestion(root, login, joueur,  questionReponsesRound1);
+			 new LancerQuestion(root, joueur,  questionReponsesRound1);
 		 });
 		 boutonRegles.getStyleClass().add("buttonStyle1");
 		 boutonDemarrer.getStyleClass().add("buttonStyle1");

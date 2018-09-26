@@ -12,15 +12,13 @@ import javafx.scene.text.TextAlignment;
 
 public class PageClassementMeilleurScore {
 	private StackPane root;
-	private String login;
 	
-	public PageClassementMeilleurScore(StackPane root, String login, Joueur joueur) {
+	public PageClassementMeilleurScore(StackPane root, Joueur joueur) {
 		this.root = root;
-		this.login = login;
 		construirePageClassementMeilleurScore(joueur);
 	}
 	
-	void construirePageClassementMeilleurScore( Joueur joueur) {
+	void construirePageClassementMeilleurScore(Joueur joueur) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -37,7 +35,7 @@ public class PageClassementMeilleurScore {
 		 hboxBoutons.setAlignment(Pos.CENTER);
 		 Button boutonTotal = new Button("Score total");
 		 boutonTotal.setOnAction(value -> {
-			 new PageClassement(root, login,joueur);
+			 new PageClassement(root, joueur);
 		 });
 		 Button boutonMeilleurScore = new Button("Meilleur score");
 		 boutonTotal.getStyleClass().add("buttonStyle1");

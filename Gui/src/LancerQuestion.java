@@ -14,18 +14,15 @@ import javafx.scene.text.TextAlignment;
 
 public class LancerQuestion {
 	private StackPane root;
-	private String login;
 	//private String[] questionReponsesRound1 =  {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
 	private String[] questionReponsesRound2 =  {"Département 13 ?", "Haute Corse", "Var", "Seine St Denis", "Bouches du Rhones"};
 	
-	public LancerQuestion(StackPane root, String login,  Joueur joueur, String[] questionReponses) {
+	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses) {
 		this.root = root;
-		this.login = login;
-		
 		construireQuestion(joueur, questionReponses);
 	}
 	
-	void construireQuestion( Joueur joueur, String[] questionReponses) {
+	void construireQuestion(Joueur joueur, String[] questionReponses) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -70,7 +67,7 @@ public class LancerQuestion {
 			 {
 		         public void run()
 		         {
-		        	 new LancerQuestion(root, login, joueur, questionReponsesRound2);  
+		        	 new LancerQuestion(root, joueur, questionReponsesRound2);  
 		         }
 
 			 };
