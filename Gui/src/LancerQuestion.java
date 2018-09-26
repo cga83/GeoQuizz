@@ -22,8 +22,6 @@ public class LancerQuestion {
 	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses, int round) {
 		this.root = root;
 		this.round = round;
-		bRepondu = false;
-		bNouvelleQuestion = false; // si l'utilisateur n'a pas encore répondu à cette question, pas besoin de la changer
 		construireQuestion(joueur, questionReponses);
 	}
 	
@@ -109,7 +107,6 @@ public class LancerQuestion {
 			 if (round<NBQUESTION) {
 				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 				 timeline.play();
-				 bNouvelleQuestion = true;
 			 }
 			 else {
 				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
@@ -134,7 +131,6 @@ public class LancerQuestion {
 				 if (round<NBQUESTION) {
 					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 					 timeline.play();
-					 bNouvelleQuestion = true;
 				 }
 				 else{
 					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
@@ -154,13 +150,13 @@ public class LancerQuestion {
 				 }
 				 else if (!reponse4.getText().equals(bonneReponse)) {
 					 reponse4.setStyle("-fx-background-color: red;");
-					 bRepondu = true;
+					// on désactive les boutons
+					 Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 				 }
 			 // on passe à la question suivante si on a pas fait toutes les questions
 			 if (round<NBQUESTION) {
 				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 				 timeline.play();
-				 bNouvelleQuestion = true;
 			 }
 			 else {
 				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
