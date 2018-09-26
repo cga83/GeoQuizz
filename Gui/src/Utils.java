@@ -99,6 +99,8 @@ public class Utils {
 			new PageJoueur(root, joueur);
 		if (actualPage instanceof LancerQuestion)
 			new DemarrerJeu(root, joueur);
+		if (actualPage instanceof PartieFinie)
+			new DemarrerJeu(root, joueur);
 		
 	}
 	
