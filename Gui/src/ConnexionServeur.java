@@ -75,7 +75,7 @@ public class ConnexionServeur {
 				 new Accueil(root,joueur);
 			 } else {
 				 String message2 = "Tentative de connexion sur le serveur " + serveur + " et sur le port " + port + " a échouée.";
-				 JOptionPane.showMessageDialog(null, message);
+				 JOptionPane.showMessageDialog(null, message2);
 			 }
 			 
 		 });

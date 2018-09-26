@@ -94,8 +94,8 @@ public class Utils {
 			new PageJoueur(root, login, joueur);
 		if (actualPage instanceof PageScores)
 			new PageJoueur(root, login, joueur);
-		//if (actualPage instanceof LancerQuestion)
-			//new DemarrerJeu(root, login);
+		if (actualPage instanceof LancerQuestion)
+			new DemarrerJeu(root, login, joueur);
 		
 	}
 	

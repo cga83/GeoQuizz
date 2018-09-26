@@ -1,3 +1,6 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,15 +15,17 @@ import javafx.scene.text.TextAlignment;
 public class LancerQuestion {
 	private StackPane root;
 	private String login;
+	//private String[] questionReponsesRound1 =  {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
+	private String[] questionReponsesRound2 =  {"Département 13 ?", "Haute Corse", "Var", "Seine St Denis", "Bouches du Rhones"};
 	
-	public LancerQuestion(StackPane root, String login,  Joueur joueur) {
+	public LancerQuestion(StackPane root, String login,  Joueur joueur, String[] questionReponses) {
 		this.root = root;
 		this.login = login;
 		
-		construireQuestion(joueur);
+		construireQuestion(joueur, questionReponses);
 	}
 	
-	void construireQuestion( Joueur joueur) {
+	void construireQuestion( Joueur joueur, String[] questionReponses) {
 		// on enlève les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
@@ -33,7 +38,6 @@ public class LancerQuestion {
 		 
 		 // TO DO : utiliser la fonction qui sera créé
 		 // si la fonction retourne { question, rep1 , rep2, rep3, bonne rep } c'est parfait sinon faudra modifier un peu
-		 String[] questionReponses = {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
 		 String[] reponses = { questionReponses[1], questionReponses[2], questionReponses[3], questionReponses[4] };
 		 reponses = Utils.shuffleArray(reponses);
 		 
@@ -61,6 +65,16 @@ public class LancerQuestion {
 				 reponse1.setStyle("-fx-background-color: red;");
 				 // on passe à la question suivante
 			 }
+			 Timer timer = new Timer(); 
+			 TimerTask task = new TimerTask()
+			 {
+		         public void run()
+		         {
+		        	 new LancerQuestion(root, login, joueur, questionReponsesRound2);  
+		         }
+
+			 };
+			 timer.schedule(task, 0, 2000l);
 		 });
 		 Button reponse2 = new Button(reponses[1]);
 		 reponse2.setOnAction(value -> {
