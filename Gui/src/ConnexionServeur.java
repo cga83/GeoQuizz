@@ -17,7 +17,7 @@ import javafx.scene.text.TextAlignment;
 public class ConnexionServeur {
 	// création de la racine
 	private StackPane root;
-	 public ConnexionServeur(StackPane root) {
+	 public ConnexionServeur(StackPane root, Joueur joueur) {
 		 this.root = root;
 		 root.getChildren().clear();
 		 construireConnexionServeur(joueur);
