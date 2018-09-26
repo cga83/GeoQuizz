@@ -1,6 +1,4 @@
 // pour le debug
-import javax.swing.JOptionPane;
-
 // import javafx
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
@@ -52,7 +50,6 @@ public class Accueil {
 		 Button boutonConnexion = new Button("Se connecter");
 		 // action sur le bouton
 		 boutonConnexion.setOnAction(value ->  {
-			 JOptionPane.showMessageDialog(null, "Connexion désirée");
 			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.CONNEXION);
 		 });
 		 // ajout d'une classe pour pouvoir utiliser le style css
@@ -60,7 +57,6 @@ public class Accueil {
 		// ajout d'un bouton s'inscrire
 		Button boutonInscription = new Button("S'inscrire");
 		boutonInscription.setOnAction(value ->  {
-			JOptionPane.showMessageDialog(null, "Inscription désirée");
 			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.INSCRIPTION);
 		});
 		boutonInscription.getStyleClass().add("buttonStyle1");

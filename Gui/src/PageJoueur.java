@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -41,7 +39,7 @@ public class PageJoueur {
 		 Button boutonScores = new Button("Scores");
 		 Button boutonNouveauJeu = new Button("Nouvelle partie");
 		 boutonNouveauJeu.setOnAction(value ->  {
-			 new DemarrerJeu(root);
+			 new DemarrerJeu(root, login);
 		 });
 		 boutonClassement.getStyleClass().add("buttonStyle1");
 		 boutonScores.getStyleClass().add("buttonStyle1");

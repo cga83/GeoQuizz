@@ -4,15 +4,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 public class DemarrerJeu {
 	private StackPane root;
+	private String login;
 	
-	public DemarrerJeu(StackPane root) {
+	public DemarrerJeu(StackPane root, String login) {
 		this.root = root;
+		this.login = login;
 		construireDemarrerJeu();
 	}
 	
@@ -30,6 +29,9 @@ public class DemarrerJeu {
 		 // ajout de boutons
 		 VBox vboxBoutons = new VBox();
 		 Button boutonRegles = new Button("Règles du jeu");
+		 boutonRegles.setOnAction(value -> {
+			 new PageRegles(root, login);
+		 });
 		 Button boutonDemarrer = new Button("Démarrer la partie");
 		 boutonRegles.getStyleClass().add("buttonStyle1");
 		 boutonDemarrer.getStyleClass().add("buttonStyle1");

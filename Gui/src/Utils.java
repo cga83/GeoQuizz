@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,13 +11,12 @@ import javafx.scene.text.Text;
 
 // fonctions utilitaires
 public class Utils {
-	public static Node returnToPreviousPage(Object actualPage, StackPane root) {
+	public static Node returnToPreviousPage(Object actualPage, StackPane root, String login) {
 		 HBox hboxMenu = new HBox();
 		 hboxMenu.setAlignment(Pos.TOP_RIGHT);
 		 Button boutonRetour = new Button();
 		 boutonRetour.setOnAction(value ->  {
-			 JOptionPane.showMessageDialog(null, "retour désiré");
-			 runPreviousPage(actualPage, root);
+			 runPreviousPage(actualPage, root, login);
 		 });
 		 boutonRetour.getStyleClass().add("buttonMenu");
 		 hboxMenu.getChildren().add(boutonRetour);
@@ -32,7 +29,6 @@ public class Utils {
 		 hboxMenu.setAlignment(Pos.TOP_LEFT);
 		 Button boutonExit = new Button();
 		 boutonExit.setOnAction(value ->  {
-			 JOptionPane.showMessageDialog(null, "exit");
 		       Platform.exit();
 		       System.exit(0);
 		 });
@@ -62,8 +58,11 @@ public class Utils {
 		 // Ajout du texte à la Hbox
 		 hboxTitre.getChildren().addAll(titreGeo, titreQuiz);
 		 
+		 String login;
+		 // TO DO : get login from joueur
+		 login = "Caro"; 
 		 // bouton retour
-		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root);
+		 Node hboxMenuPrecent = returnToPreviousPage(actualPage, root, login);
 		 Node hboxMenuExit = exitApp();
 		 
 		 // positionnement du menu par rapport au titre
@@ -75,11 +74,18 @@ public class Utils {
 		 return menu;
 	}
 	
-	
-	private static void runPreviousPage(Object actualPage, StackPane root) {
+	private static void runPreviousPage(Object actualPage, StackPane root, String login) { // TO DO : le login sera stocké dans la classe joueur
 		if (actualPage instanceof Accueil)
 			new ConnexionServeur(root);
 		if (actualPage instanceof ConnexionOuInscription)
+			new Accueil(root);	
+		if (actualPage instanceof PageJoueur)
+			// TO DO : classe joueur -> fonction déco 
 			new Accueil(root);
+		if (actualPage instanceof DemarrerJeu)
+			new PageJoueur(root, login);
+		if (actualPage instanceof PageRegles)
+			new DemarrerJeu(root, login);
+		
 	}
 }
