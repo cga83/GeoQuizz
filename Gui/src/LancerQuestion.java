@@ -1,6 +1,5 @@
-import java.util.Timer;
-import java.util.TimerTask;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,14 +10,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 public class LancerQuestion {
+	private final static int NBQUESTION = 2;
 	private StackPane root;
 	//private String[] questionReponsesRound1 =  {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
 	private String[] questionReponsesRound2 =  {"Département 13 ?", "Haute Corse", "Var", "Seine St Denis", "Bouches du Rhones"};
+	private int round;
 	
-	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses) {
+	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses, int round) {
 		this.root = root;
+		this.round = round;
 		construireQuestion(joueur, questionReponses);
 	}
 	
@@ -51,66 +54,76 @@ public class LancerQuestion {
 		 question.setTextAlignment(TextAlignment.CENTER);
 		 question.setFill(Color.WHITE);
 		 Button reponse1 = new Button(reponses[0]);
+		 
+		 String bonneReponse = questionReponses[4];
 		 reponse1.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse1.getText().equals(questionReponses[4])) {
+			 if (reponse1.getText().equals(bonneReponse)) {
 			 	reponse1.setStyle("-fx-background-color: green;");
 			 	// score augmente
-			 	// on passe à la question suivante
 			 }
-			 else {
+			 else 
 				 reponse1.setStyle("-fx-background-color: red;");
-				 // on passe à la question suivante
+			 // on passe à la question suivante si on a pas fait toutes les questions
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+				 timeline.play();
 			 }
-			 Timer timer = new Timer(); 
-			 TimerTask task = new TimerTask()
-			 {
-		         public void run()
-		         {
-		        	 new LancerQuestion(root, joueur, questionReponsesRound2);  
-		         }
+			 else 
+				 new PartieFinie(root, joueur);
 
-			 };
-			 timer.schedule(task, 0, 2000l);
+			 
 		 });
 		 Button reponse2 = new Button(reponses[1]);
 		 reponse2.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse2.getText().equals(questionReponses[4])) {
+			 if (reponse2.getText().equals(bonneReponse)) {
 			 	reponse2.setStyle("-fx-background-color: green;");
 			 	// score augmente
-			 	// on passe à la question suivante
 			 }
-			 else {
+			 else 
 				 reponse2.setStyle("-fx-background-color: red;");
-				 // on passe à la question suivante
+			 // on passe à la question suivante si on a pas fait toutes les questions
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+				 timeline.play();
 			 }
+			 else 
+				 new PartieFinie(root, joueur);
 		 });
 		 Button reponse3 = new Button(reponses[2]);
 		 reponse3.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse3.getText().equals(questionReponses[4])) {
+			 if (reponse3.getText().equals(bonneReponse)) {
 			 	reponse3.setStyle("-fx-background-color: green;");
 			 	// score augmente
-			 	// on passe à la question suivante
 			 }
-			 else {
+			 else 
 				 reponse3.setStyle("-fx-background-color: red;");
-				 // on passe à la question suivante
+			 // on passe à la question suivante si on a pas fait toutes les questions
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+				 timeline.play();
 			 }
+			 else 
+				 new PartieFinie(root, joueur);
 		 });
 		 Button reponse4 = new Button(reponses[3]);
 		 reponse4.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse4.getText().equals(questionReponses[4])) {
+			 if (reponse4.getText().equals(bonneReponse)) {
 			 	reponse4.setStyle("-fx-background-color: green;");
 			 	// score augmente
-			 	// on passe à la question suivante
 			 }
-			 else {
+			 else 
 				 reponse4.setStyle("-fx-background-color: red;");
-				 // on passe à la question suivante
+			 // on passe à la question suivante si on a pas fait toutes les questions
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+				 timeline.play();
 			 }
+			 else 
+				 new PartieFinie(root, joueur);
 		 });
 		 reponse1.getStyleClass().add("buttonStyle1");
 		 reponse2.getStyleClass().add("buttonStyle1");
