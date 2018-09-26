@@ -72,10 +72,12 @@ public class ConnexionOuInscription {
 			 String message = "Tentative de connexion de " + pseudo + " avec le mdp " + mdp + ".";
 			 JOptionPane.showMessageDialog(null, message);
 			 if (mode==Mode.CONNEXION) {
-				 // ...
+				 // si la connexion a marché ...
+				 new PageJoueur(root, pseudo);
 			 }
 			 else {
-				 // ...
+				 // si l'inscription a marché, on redirige vers la page de connexion
+				 // new ConnexionOuInscription(ConnexionOuInscription.Mode.CONNEXION, root);
 			 }
 		 });
 		 

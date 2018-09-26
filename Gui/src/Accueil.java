@@ -9,13 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
      
 // classe accueil = interface utilisateur pour la connexion et/ou inscription
@@ -24,10 +19,10 @@ public class Accueil {
 	private StackPane root;
  
 	public Accueil(StackPane root) {
-		this.root = root;
+		 this.root = root;
 		 FonctionsCSV csv = new FonctionsCSV();
 		 csv.LireTab();
-		construireAccueil();
+		 construireAccueil();
 	}
 	 
 	 // construction des objets que l'on va afficher
