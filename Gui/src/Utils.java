@@ -1,11 +1,9 @@
 import java.util.Random;
 
 import javafx.application.Platform;
-import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -130,5 +128,12 @@ public class Utils {
 		  // Calculate popup placement coordinates.
 		  popup.getContent().addAll(hboxPopup);
 		  popup.show(Main.getStage());
+	}
+	
+	public static void disarmButtons(Button button1, Button button2, Button button3, Button button4) {
+		button1.setDisable(true);
+		button2.setDisable(true);
+		button3.setDisable(true);
+		button4.setDisable(true);
 	}
 }

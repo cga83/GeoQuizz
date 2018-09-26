@@ -18,8 +18,6 @@ public class LancerQuestion {
 	//private String[] questionReponsesRound1 =  {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
 	private String[] questionReponsesRound2 =  {"Département 13 ?", "Haute Corse", "Var", "Seine St Denis", "Bouches du Rhones"};
 	private int round;
-	private boolean bRepondu;
-	private boolean bNouvelleQuestion;
 	
 	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses, int round) {
 		this.root = root;
@@ -61,108 +59,111 @@ public class LancerQuestion {
 		 String bonneReponse = questionReponses[4];
 		 
 		 Button reponse1 = new Button(reponses[0]);
+		 Button reponse2 = new Button(reponses[1]);
+		 Button reponse3 = new Button(reponses[2]);
+		 Button reponse4 = new Button(reponses[3]);
 		 reponse1.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse1.getText().equals(bonneReponse) && !bRepondu) {
+			 if (reponse1.getText().equals(bonneReponse)) {
 			 	reponse1.setStyle("-fx-background-color: green;");
-			 	// on indique que le joueur a répondu
-			 	bRepondu = true;
+			 	// on désactive les boutons
+			 	Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 			 	// score augmente
 			 	// TO DO
 			 }
-			 else if (!reponse1.getText().equals(bonneReponse) && !bRepondu)
+			 else if (!reponse1.getText().equals(bonneReponse))
 			 {
 				 reponse1.setStyle("-fx-background-color: red;");
-				 bRepondu = true;
+			 	 // on désactive les boutons
+			 	 Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 			 }
 			 // on passe à la question suivante si on a pas fait toutes les questions
-			 if (round<NBQUESTION && !bNouvelleQuestion) {
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 				 timeline.play();
-				 bNouvelleQuestion = true;
 			 }
-			 else if (round>=NBQUESTION){
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new PartieFinie(root, joueur)));  
+			 else {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
 				 timeline.play();
 			 }
 
 			 
 		 });
 		 
-		 Button reponse2 = new Button(reponses[1]);
 		 reponse2.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse2.getText().equals(bonneReponse) && !bRepondu) {
+			 if (reponse2.getText().equals(bonneReponse)) {
 				 // on indique au joueur que la réponse est juste
 				 	reponse2.setStyle("-fx-background-color: green;");
-				 	// on indique que le joueur a répondu
-				 	bRepondu = true;
+				 	// on désactive les boutons
+				 	Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 				 	// score augmente
 				 	// TO DO
 				 }
-				 else if (!reponse2.getText().equals(bonneReponse) && !bRepondu) {
+				 else if (!reponse2.getText().equals(bonneReponse)) {
 					 reponse2.setStyle("-fx-background-color: red;");
-					 bRepondu = true;
+				 	 // on désactive les boutons
+				 	 Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 				 }
 			 // on passe à la question suivante si on a pas fait toutes les questions
-			 if (round<NBQUESTION && !bNouvelleQuestion) {
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 				 timeline.play();
 				 bNouvelleQuestion = true;
 			 }
-			 else if (round>=NBQUESTION){
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new PartieFinie(root, joueur)));  
+			 else {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
 				 timeline.play();
 			 }
 		 });
 		 
-		 Button reponse3 = new Button(reponses[2]);
 		 reponse3.setOnAction(value -> {
-			 if (reponse3.getText().equals(bonneReponse) && !bRepondu) {
+			 if (reponse3.getText().equals(bonneReponse)) {
 				 	reponse3.setStyle("-fx-background-color: green;");
-				 	// on indique que le joueur a répondu
-				 	bRepondu = true;
+				 // on désactive les boutons
+				 	Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 				 	// score augmente
 				 	// TO DO
 				 }
-				 else if (!reponse3.getText().equals(bonneReponse) && !bRepondu) {
+				 else if (!reponse3.getText().equals(bonneReponse)) {
 					 reponse3.setStyle("-fx-background-color: red;");
-					 bRepondu = true;
+					// on désactive les boutons
+					 Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 				 }
 				 // on passe à la question suivante si on a pas fait toutes les questions
-				 if (round<NBQUESTION && !bNouvelleQuestion) {
-					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+				 if (round<NBQUESTION) {
+					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 					 timeline.play();
 					 bNouvelleQuestion = true;
 				 }
-				 else if (round>=NBQUESTION){
-					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new PartieFinie(root, joueur)));  
+				 else{
+					 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
 					 timeline.play();
 				 }
 		 });
 
-		 Button reponse4 = new Button(reponses[3]);
+		 
 		 reponse4.setOnAction(value -> {
 			 // si c'est la bonne reponse alors on l'indique en vert sinon en rouge
-			 if (reponse4.getText().equals(bonneReponse) && !bRepondu) {
+			 if (reponse4.getText().equals(bonneReponse)) {
 				 	reponse4.setStyle("-fx-background-color: green;");
-				 	// on indique que le joueur a répondu
-				 	bRepondu = true;
+				 	// on désactive les boutons
+				 	Utils.disarmButtons(reponse1, reponse2, reponse3, reponse4);
 				 	// score augmente
 				 	// TO DO
 				 }
-				 else if (!reponse4.getText().equals(bonneReponse) && !bRepondu) {
+				 else if (!reponse4.getText().equals(bonneReponse)) {
 					 reponse4.setStyle("-fx-background-color: red;");
 					 bRepondu = true;
 				 }
 			 // on passe à la question suivante si on a pas fait toutes les questions
-			 if (round<NBQUESTION && !bNouvelleQuestion) {
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
+			 if (round<NBQUESTION) {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new LancerQuestion(root, joueur, questionReponsesRound2, round+1)));  
 				 timeline.play();
 				 bNouvelleQuestion = true;
 			 }
-			 else if (round>=NBQUESTION){
-				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), a ->  new PartieFinie(root, joueur)));  
+			 else {
+				 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), a ->  new PartieFinie(root, joueur)));  
 				 timeline.play();
 			 }
 		 });
