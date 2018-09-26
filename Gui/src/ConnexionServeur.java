@@ -1,3 +1,7 @@
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 public class ConnexionServeur {
 	// création de la racine
@@ -87,6 +92,19 @@ public class ConnexionServeur {
 		 vboxChoix.setSpacing(25);
 		 pane.setBottom(vboxChoix);
 		 pane.setCenter(image);
+
+		 
+		// ajout animation
+	    FadeTransition transitionImage = new FadeTransition(Duration.millis(3000), image);
+	    transitionImage.setFromValue(0.01);
+	    transitionImage.setToValue(1.0);
+	    transitionImage.play();  
+	    
+		RotateTransition rotateAnimation = new RotateTransition(Duration.seconds(1), image); 
+		rotateAnimation.setCycleCount(1); 
+		rotateAnimation.setByAngle(360); 
+		rotateAnimation.setInterpolator(Interpolator.LINEAR); 
+		rotateAnimation.play(); 
 		 
 		 root.getChildren().addAll(pane);    
 	}
