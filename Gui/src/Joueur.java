@@ -88,14 +88,7 @@ public class Joueur extends JFrame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		
-		if (valide) {
-			login = pseudo;
-			authenticated = true;
-			return true; // afficher page jeu
-		} else {
-			return false;//afficher mauvais couple pseudo/mdp
-		}		
+		return valide;		
 	}
 
 	

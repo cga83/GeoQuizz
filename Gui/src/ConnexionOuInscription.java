@@ -83,7 +83,7 @@ public class ConnexionOuInscription {
 			 else {
 				 if(joueur.inscrire(pseudo, mdp)) {
 					// si l'inscription a marché, on redirige vers la page de connexion
-					 // new ConnexionOuInscription(ConnexionOuInscription.Mode.CONNEXION, root);
+					 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.CONNEXION, joueur);
 				 }
 				 else {
 					 String messageInscriptionFailed = "Ce pseudo exist déjà, recommencer avec un autre pseudo";

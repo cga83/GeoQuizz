@@ -67,18 +67,25 @@ public class Serveur {
 		}
 	}
 	
-	void ecouteClient(DataInputStream in, DataOutputStream out, int nomJoueur) throws IOException {
+	void ecouteClient(DataInputStream in, DataOutputStream out, int numJoueur) throws IOException {
 		int action;
 		while(connected) {
 			//ecoute des clients
 			action = in.readInt();
 			if(action == 1) {
-				System.out.println("tentative de connection de nomJoueur");
+				System.out.println("tentative de connection de " + numJoueur);
 				String pseudo = in.readUTF();
 				String mdp = in.readUTF();
 				System.out.println(pseudo + " essaye de se connecter avec le mdp " + mdp);
 				out.writeBoolean(connexion(pseudo, mdp));
-			}		
+			}	
+			else if(action == 2) {
+				System.out.println("tentative d'inscription de" + numJoueur);
+				String pseudo = in.readUTF();
+				String mdp = in.readUTF();
+				System.out.println("joueur" + numJoueur + " essaye de s'inscrire avec le pseudo " + pseudo);
+				out.writeBoolean(inscription(pseudo, mdp));
+			}	
 		}	
 	}
 	
@@ -90,13 +97,25 @@ public class Serveur {
 			System.out.println("login inexistant");
 			return false;
 		} else {
-			if(mdp.equals(mdpExistant)) {
-				System.out.println("connexion rï¿½ussi");
+			if(mdp.equals(mdpExistant)) { // TODO retourner directement le mdp.equals(mdpExistant)
+				System.out.println("connexion réussi");
 				return true;
 			} else {
 				System.out.println("mauvais mot de passe");
 				return false;
 			}
+		}	
+	}	
+	
+	boolean inscription(String pseudo, String mdp) {
+		boolean pseudoExistant = false;
+		//TODO pseudoExistant = ChercherUtilisateur(pseudo)
+		if (pseudoExistant) {
+			System.out.println("login existant");
+			return false;
+		} else {
+			//TODO inserer dans les logins ce login et le mdp avec scores à 0
+			return true;
 		}
 		
 	}
