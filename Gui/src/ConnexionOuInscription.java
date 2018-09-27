@@ -67,16 +67,28 @@ public class ConnexionOuInscription {
 		 boutonValider.setOnAction(value ->  {
 			 String mdp = choixMdp.getText();
 			 String pseudo = choixPseudo.getText();
-			 String message = "Tentative de connexion de " + pseudo + " avec le mdp " + mdp + ".";
+			 String message = "Tentative de connexion de " + pseudo + " avec le mdp " + mdp + "."; //TODO a retirer en version final
 			 Utils.createPopup(message); 
 			 if (mode==Mode.CONNEXION) {
 				 // si la connexion a marché ...
 				 // on peut setter le login du joueur
-				 new PageJoueur(root, joueur);
+				 if (joueur.connectAuJeu(pseudo,mdp)) {
+					 new PageJoueur(root, joueur);
+				 } else {
+					 String messageConnexionFailed = "le couple pseudo mot de passe n'est pas reconnu";
+					 Utils.createPopup(messageConnexionFailed); 
+				 }
+				
 			 }
 			 else {
-				 // si l'inscription a marché, on redirige vers la page de connexion
-				 // new ConnexionOuInscription(ConnexionOuInscription.Mode.CONNEXION, root);
+				 if(joueur.inscrire(pseudo, mdp)) {
+					// si l'inscription a marché, on redirige vers la page de connexion
+					 // new ConnexionOuInscription(ConnexionOuInscription.Mode.CONNEXION, root);
+				 }
+				 else {
+					 String messageInscriptionFailed = "Ce pseudo exist déjà, recommencer avec un autre pseudo";
+					 Utils.createPopup(messageInscriptionFailed);
+				 }
 			 }
 		 });
 		 
