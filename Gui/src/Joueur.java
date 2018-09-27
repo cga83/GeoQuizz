@@ -63,6 +63,7 @@ public class Joueur extends JFrame{
 			sortie.writeUTF(pseudo);
 			sortie.writeUTF(mdp);
 			valide = entre.readBoolean(); // le serveur renvoie true ou false
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
@@ -80,7 +81,7 @@ public class Joueur extends JFrame{
 		boolean valide = false; 
 		//envoie login mdp au serveur
 		try {
-			sortie.writeInt(2); //1 correspond a l'inscription
+			sortie.writeInt(2); //2 correspond a l'inscription
 			sortie.writeUTF(pseudo);
 			sortie.writeUTF(mdp);
 			valide = entre.readBoolean(); // le serveur renvoie true ou false

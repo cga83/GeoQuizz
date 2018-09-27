@@ -47,15 +47,9 @@ public class Serveur {
 				DataInputStream entre = new DataInputStream(socket.getInputStream());
 				DataOutputStream sortie = new DataOutputStream(socket.getOutputStream());
 				sortie.writeInt(numJoueur);
-				String nomJoueur = entre.readUTF();
 				
 				//Joueurs.add(new Users(entre, sortie, nomJoueur));
-				
-				System.out.println(nomJoueur+"connected"); 
-				
-				
-				
-				
+
 				ecouteClient(entre, sortie, numJoueur);
 				
 				
@@ -73,17 +67,17 @@ public class Serveur {
 		}
 	}
 	
-	void ecouteClient(DataInputStream In, DataOutputStream Out, int nomJoueur) throws IOException {
+	void ecouteClient(DataInputStream in, DataOutputStream out, int nomJoueur) throws IOException {
 		int action;
 		while(connected) {
 			//ecoute des clients
-			action = In.readInt();
+			action = in.readInt();
 			if(action == 1) {
 				System.out.println("tentative de connection de nomJoueur");
-				String pseudo = In.readUTF();
-				String mdp = In.readUTF();
+				String pseudo = in.readUTF();
+				String mdp = in.readUTF();
 				System.out.println(pseudo + " essaye de se connecter avec le mdp " + mdp);
-				 connexion(pseudo,mdp);
+				out.writeBoolean(connexion(pseudo, mdp));
 			}		
 		}	
 	}
@@ -96,7 +90,7 @@ public class Serveur {
 			System.out.println("login inexistant");
 			return false;
 		} else {
-			if(mdp == mdpExistant) {
+			if(mdp.equals(mdpExistant)) {
 				System.out.println("connexion r�ussi");
 				return true;
 			} else {
