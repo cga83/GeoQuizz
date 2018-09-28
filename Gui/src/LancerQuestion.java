@@ -1,3 +1,5 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 public class LancerQuestion {
 	private final static int NBQUESTION = 5;
@@ -19,12 +22,14 @@ public class LancerQuestion {
 	private int round;
 	private int score;
 	private int tempsRestant;
+	private int tempsEcoule;
 
 	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses, int round) {
 		this.score = 0;
 		this.root = root;
 		this.round = round;
 		this.tempsRestant = TEMPSPARQUESTION;
+		tempsEcoule=0;
 		construireQuestion(joueur, questionReponses);
 	}
 
@@ -34,6 +39,7 @@ public class LancerQuestion {
 		this.root = root;
 		this.round = round;
 		this.tempsRestant = TEMPSPARQUESTION;
+		tempsEcoule=0;
 		construireQuestion(joueur, questionReponses);
 	}
 
@@ -114,5 +120,33 @@ public class LancerQuestion {
 
 		// ajout à la racine
 		root.getChildren().addAll(pane);
+		
+		// TO DO : supprimer la ligne qui suit !
+		String[] questionReponsesRound2 = { "Département 13 ?", "Haute Corse", "Var", "Seine St Denis","Bouches du Rhones" };
+		
+		// Création d'une timeline pour qu'une nouvelle question soit affichée au bout de 5s
+		Timeline timeline = new Timeline();
+		KeyFrame jeu = new KeyFrame(Duration.seconds(5),
+			a -> {
+				new LancerQuestion(root, joueur, questionReponsesRound2, round + 1, score);
+		});
+		
+		// Création du timer : chaque keyframe va compter 1s
+		KeyFrame[] countSeconds = new KeyFrame[TEMPSPARQUESTION];
+		for (int i = 0; i<TEMPSPARQUESTION; i++) {
+		
+			countSeconds[i] = new KeyFrame(Duration.seconds(i),
+				a -> {
+					int tempsAffiche = tempsRestant - tempsEcoule;
+					tempsEcoule++;
+					texteTempsRestant.setText("Temps : " + tempsAffiche);
+			});
+		}
+		
+		// On ajoute tous les éléments à la timeline:
+		// Au bout de 5s, la question change
+		// Toutes les secondes, on diminue le temps à afficher de 1
+		timeline.getKeyFrames().addAll(jeu, countSeconds[0], countSeconds[1], countSeconds[2], countSeconds[3], countSeconds[4]);
+		timeline.play();
 	}
 }
