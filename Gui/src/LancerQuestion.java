@@ -139,6 +139,7 @@ public class LancerQuestion {
 				a -> {
 					int tempsAffiche = tempsRestant - tempsEcoule;
 					tempsEcoule++;
+					if (tempsAffiche<=2) texteTempsRestant.setStyle("-fx-fill:red;");
 					texteTempsRestant.setText("Temps : " + tempsAffiche);
 			});
 		}
