@@ -32,6 +32,7 @@ public class DemarrerJeu {
 		 });
 		 Button boutonDemarrer = new Button("Démarrer la partie");
 		 boutonDemarrer.setOnAction(value -> {
+			 // TO DO : remplacer cette ligne
 			 String[] questionReponsesRound1 = {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
 			 new LancerQuestion(root, joueur,  questionReponsesRound1, 1);
 		 });

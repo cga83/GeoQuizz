@@ -97,7 +97,7 @@ public class LancerQuestion {
 				timeline.play();
 			} else {
 				Timeline timeline = new Timeline(
-						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur)));
+						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur, score)));
 				timeline.play();
 			}
 
@@ -124,7 +124,7 @@ public class LancerQuestion {
 				timeline.play();
 			} else {
 				Timeline timeline = new Timeline(
-						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur)));
+						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur, score)));
 				timeline.play();
 			}
 		});
@@ -148,7 +148,7 @@ public class LancerQuestion {
 				timeline.play();
 			} else {
 				Timeline timeline = new Timeline(
-						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur)));
+						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur, score)));
 				timeline.play();
 			}
 		});
@@ -173,7 +173,7 @@ public class LancerQuestion {
 				timeline.play();
 			} else {
 				Timeline timeline = new Timeline(
-						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur)));
+						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur, score)));
 				timeline.play();
 			}
 		});
