@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
+import javafx.util.Duration;
 
 // fonctions utilitaires
 public class Utils {
@@ -135,5 +138,34 @@ public class Utils {
 		button2.setDisable(true);
 		button3.setDisable(true);
 		button4.setDisable(true);
+	}
+	
+	public static void checkResponse(StackPane root, Joueur joueur, int round, int score, int nbquestion, Button buttonClicked, Button button2, Button button3, Button button4, String bonneReponse) {
+			// si c'est la bonne reponse alors on l'indique en vert sinon en rouge
+			if (buttonClicked.getText().equals(bonneReponse)) {
+				buttonClicked.setStyle("-fx-background-color: green;");
+				// on désactive les boutons
+				Utils.disarmButtons(buttonClicked, button2, button3, button4);
+				// score augmente
+				score++;
+			} else if (!buttonClicked.getText().equals(bonneReponse)) {
+				buttonClicked.setStyle("-fx-background-color: red;");
+				// on désactive les boutons
+				Utils.disarmButtons(buttonClicked, button2, button3, button4);
+			}
+			// on passe à la question suivante si on a pas fait toutes les questions
+			if (round < nbquestion) {
+				final int scoreFinal = score;
+				// TO DO : supprimer ça et à chaque fois qu'on lance une nouvelle question prendre une question aléatoirement
+				String[] questionReponsesRound2 = { "Département 13 ?", "Haute Corse", "Var", "Seine St Denis","Bouches du Rhones" };
+				Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5),
+						a -> new LancerQuestion(root, joueur, questionReponsesRound2, round + 1, scoreFinal)));
+				timeline.play();
+			} else {
+				final int scoreFinal = score;
+				Timeline timeline = new Timeline(
+						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur, scoreFinal)));
+				timeline.play();
+			}
 	}
 }
