@@ -1,27 +1,30 @@
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.util.Duration;
 
 public class LancerQuestion {
 	private final static int NBQUESTION = 5;
+	private final static int TEMPSPARQUESTION = 5;
 	private StackPane root;
 	private int round;
 	private int score;
+	private int tempsRestant;
 
 	public LancerQuestion(StackPane root, Joueur joueur, String[] questionReponses, int round) {
 		this.score = 0;
 		this.root = root;
 		this.round = round;
+		this.tempsRestant = TEMPSPARQUESTION;
 		construireQuestion(joueur, questionReponses);
 	}
 
@@ -30,6 +33,7 @@ public class LancerQuestion {
 		this.score = score;
 		this.root = root;
 		this.round = round;
+		this.tempsRestant = TEMPSPARQUESTION;
 		construireQuestion(joueur, questionReponses);
 	}
 
@@ -54,15 +58,26 @@ public class LancerQuestion {
 		for (int i = 0; i < reponses.length; i++) {
 			System.out.println(reponses[i] + "\n");
 		}
-
-		VBox vboxQuestionReponses = new VBox();
-		vboxQuestionReponses.setAlignment(Pos.CENTER);
-		vboxQuestionReponses.setSpacing(30);
+		
+		// HBox pour le score et le temps restant
+		HBox hboxUtils = new HBox();
+		hboxUtils.setAlignment(Pos.CENTER);
+		hboxUtils.setSpacing(30);
 		Text texteScore = new Text("Score : " + score);
 		texteScore.setFont(Font.font("Verdana", 15));
 		texteScore.setTextAlignment(TextAlignment.CENTER);
 		texteScore.setFill(Color.WHITE);
-		Text question = new Text(questionReponses[0]);
+		Text texteTempsRestant = new Text("Temps : " + tempsRestant);
+		texteTempsRestant.setFont(Font.font("Verdana", 15));
+		texteTempsRestant.setTextAlignment(TextAlignment.CENTER);
+		texteTempsRestant.setFill(Color.WHITE);
+		ImageView image = new ImageView(new Image("background_small.png"));
+		hboxUtils.getChildren().addAll(texteScore, image, texteTempsRestant);
+
+		VBox vboxQuestionReponses = new VBox();
+		vboxQuestionReponses.setAlignment(Pos.CENTER);
+		vboxQuestionReponses.setSpacing(30);
+		Text question = new Text("Question " + round +" :\n"+questionReponses[0]);
 		question.setFont(Font.font("Verdana", 25));
 		question.setTextAlignment(TextAlignment.CENTER);
 		question.setFill(Color.WHITE);
@@ -92,7 +107,7 @@ public class LancerQuestion {
 		reponse2.getStyleClass().add("buttonStyle1");
 		reponse3.getStyleClass().add("buttonStyle1");
 		reponse4.getStyleClass().add("buttonStyle1");
-		vboxQuestionReponses.getChildren().addAll(texteScore, question, reponse1, reponse2, reponse3, reponse4);
+		vboxQuestionReponses.getChildren().addAll(hboxUtils, question, reponse1, reponse2, reponse3, reponse4);
 
 		pane.setTop(menu);
 		pane.setCenter(vboxQuestionReponses);

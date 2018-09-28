@@ -159,7 +159,7 @@ public class Utils {
 				// TO DO : supprimer ça et à chaque fois qu'on lance une nouvelle question prendre une question aléatoirement
 				String[] questionReponsesRound2 = { "Département 13 ?", "Haute Corse", "Var", "Seine St Denis","Bouches du Rhones" };
 				Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5),
-						a -> new LancerQuestion(root, joueur, questionReponsesRound2, round + 1, scoreFinal)));
+					a -> new LancerQuestion(root, joueur, questionReponsesRound2, round + 1, scoreFinal)));
 				timeline.play();
 			} else {
 				final int scoreFinal = score;
