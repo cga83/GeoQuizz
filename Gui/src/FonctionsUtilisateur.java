@@ -14,8 +14,7 @@ public class FonctionsUtilisateur {
 	private static final String FICHIERUTILISATEURS = "utilisateurs.csv";
 	private static final String FICHIERCLASSEMENTG = "classementG.csv";
 	private static final String FICHIERCLASSEMENTP = "classementP.csv";
-	
-	ArrayList<Utilisateur> list;
+	//ArrayList<Utilisateur> list;
 
 
 	
@@ -35,9 +34,9 @@ public class FonctionsUtilisateur {
 		FileReader file;
 		BufferedReader buff ;
 		int i;
-		//On vérifie que le fichier existe bien
+		//On vï¿½rifie que le fichier existe bien
 		if(exist) {
-			System.out.println("On a bien trouvé le fichier");
+			System.out.println("On a bien trouvï¿½ le fichier");
 			try {
 				file = new FileReader(FICHIERCLASSEMENTG);
 				buff = new BufferedReader(file) ;
@@ -45,7 +44,7 @@ public class FonctionsUtilisateur {
 					try {
 						//On lit la ligne du fichier dans chaine
 						chaine = buff.readLine();
-						//On stocke cette ligne dans un tableau intermédiaire
+						//On stocke cette ligne dans un tableau intermï¿½diaire
 						scoresg[i] = chaine;
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -66,11 +65,11 @@ public class FonctionsUtilisateur {
 		
 		}
 		else {
-			System.out.println("Fichier non trouvé");
+			System.out.println("Fichier non trouvï¿½");
 		}
 		
-		//Le tableau intermédiaire contient les lignes du fichier, ie. deux champs : pseudo et score total
-		//On découpe les lignes et on stocke dans un tableau à deux colonnes
+		//Le tableau intermï¿½diaire contient les lignes du fichier, ie. deux champs : pseudo et score total
+		//On dï¿½coupe les lignes et on stocke dans un tableau ï¿½ deux colonnes
 		for(int k = 0 ; k<10 ; k++) {
 				chainebis = scoresg[k].split(";");
 				scores[k][0] = chainebis[0];
@@ -92,9 +91,9 @@ public class FonctionsUtilisateur {
 		FileReader file;
 		BufferedReader buff ;
 		int i;
-		//On vérifie que le fichier existe bien
+		//On vï¿½rifie que le fichier existe bien
 		if(exist) {
-			System.out.println("On a bien trouvé le fichier");
+			System.out.println("On a bien trouvï¿½ le fichier");
 			try {
 				file = new FileReader(FICHIERCLASSEMENTP);
 				buff = new BufferedReader(file) ;
@@ -102,7 +101,7 @@ public class FonctionsUtilisateur {
 					try {
 						//On lit la ligne du fichier dans chaine
 						chaine = buff.readLine();
-						//On stocke cette ligne dans un tableau intermédiaire
+						//On stocke cette ligne dans un tableau intermï¿½diaire
 						scoresp[i] = chaine;
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -123,10 +122,10 @@ public class FonctionsUtilisateur {
 			}
 		}
 		else {
-			System.out.println("Fichier non trouvé");
+			System.out.println("Fichier non trouvï¿½");
 		}
-		//Le tableau intermédiaire contient les lignes du fichier, ie. deux champs : pseudo et score total
-		//On découpe les lignes et on stocke dans un tableau à deux colonnes
+		//Le tableau intermï¿½diaire contient les lignes du fichier, ie. deux champs : pseudo et score total
+		//On dï¿½coupe les lignes et on stocke dans un tableau ï¿½ deux colonnes
 		for(int k = 0 ; k<10 ; k++) {
 				chainebis = scoresp[k].split(";");
 				scores[k][0] = chainebis[0];
@@ -137,35 +136,35 @@ public class FonctionsUtilisateur {
 	
 	int MettreScoreP(String login, int score) {
 		/**
-		 * Fonction qui, suite à une partie, regarde le score global et si le nouveu score mérite
-		 * d'être dans le top 10, on l'inscrit
+		 * Fonction qui, suite ï¿½ une partie, regarde le score global et si le nouveu score mï¿½rite
+		 * d'ï¿½tre dans le top 10, on l'inscrit
 		 */
 		int resultat = 2;
 		int rang = 10;
 		int i = 0 ;
-		// 0=pb, 1=ajouté, 2=trop petit
+		// 0=pb, 1=ajoutï¿½, 2=trop petit
 		String [][] tab = LireScoreP() ;
-		//On charge tout d'abord le fichier grâce à la fonction LireScoreP afin de ne pas avoir un fichier
-		//à comparer mais un tableau
+		//On charge tout d'abord le fichier grï¿½ce ï¿½ la fonction LireScoreP afin de ne pas avoir un fichier
+		//ï¿½ comparer mais un tableau
 		while(Integer.parseInt(tab[i][1]) > score)
 			i++;
 		rang = i ;
 		//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
-		//C'est à ce rang que nous allons inscrire le nouveau score
+		//C'est ï¿½ ce rang que nous allons inscrire le nouveau score
 		if(rang<10) {
-			//Si le score mérite d'être dans le classement on réécrit tout le fichier
+			//Si le score mï¿½rite d'ï¿½tre dans le classement on rï¿½ï¿½crit tout le fichier
 			boolean exist = Files.exists(Paths.get(FICHIERCLASSEMENTP)) ;
 			FileWriter file;
 			BufferedWriter buff ;
 			String chaine ;
 			if(exist) {
-				System.out.println("On a bien trouvé le fichier");
+				System.out.println("On a bien trouvï¿½ le fichier");
 				try {
 					file = new FileWriter(FICHIERCLASSEMENTP);
 					buff = new BufferedWriter(file) ;
 					for(int j=0 ; j<rang ; j++) {
 						try {
-							//On prépare la chaine à écrire dans le fichier
+							//On prï¿½pare la chaine ï¿½ ï¿½crire dans le fichier
 							chaine = tab[j][0] + ";" + tab[j][1] ;
 							buff.write(chaine+"\n") ;
 						} catch (IOException e) {
@@ -178,7 +177,7 @@ public class FonctionsUtilisateur {
 					resultat = 1;
 					for(int k=rang ; k<9 ; k++) {
 							try {
-								//On prépare la chaine à écrire dans le fichier
+								//On prï¿½pare la chaine ï¿½ ï¿½crire dans le fichier
 								chaine = tab[k][0] + ";" + tab[k][1] ;
 								buff.write(chaine+"\n") ;
 							} catch (IOException e) {
@@ -194,13 +193,13 @@ public class FonctionsUtilisateur {
 						}
 				} 
 				else {
-					System.out.println("Fichier non trouvé");
+					System.out.println("Fichier non trouvï¿½");
 					resultat = 0;
 				}
 			}
 		
 		else {
-			System.out.println("Le score n'est pas assez élevé pour être dans le top 10");
+			System.out.println("Le score n'est pas assez ï¿½levï¿½ pour ï¿½tre dans le top 10");
 			resultat = 2;
 		}	
 		return resultat;
@@ -208,35 +207,35 @@ public class FonctionsUtilisateur {
 	
 	int MettreScoreG(String login, int score) {
 		/**
-		 * Fonction qui, suite à une partie, regarde le score global et si le nouveu score mérite
-		 * d'être dans le top 10, on l'inscrit
+		 * Fonction qui, suite ï¿½ une partie, regarde le score global et si le nouveu score mï¿½rite
+		 * d'ï¿½tre dans le top 10, on l'inscrit
 		 */
 		int resultat = 2;
 		int rang = 10;
 		int i = 0 ;
-		// 0=pb, 1=ajouté, 2=trop petit
+		// 0=pb, 1=ajoutï¿½, 2=trop petit
 		String [][] tab = LireScoreG() ;
-		//On charge tout d'abord le fichier grâce à la fonction LireScoreG afin de ne pas avoir un fichier
-		//à comparer mais un tableau
+		//On charge tout d'abord le fichier grï¿½ce ï¿½ la fonction LireScoreG afin de ne pas avoir un fichier
+		//ï¿½ comparer mais un tableau
 		while(Integer.parseInt(tab[i][1]) > score)
 			i++;
 		rang = i ;
 		//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
-		//C'est à ce rang que nous allons inscrire le nouveau score
+		//C'est ï¿½ ce rang que nous allons inscrire le nouveau score
 		if(rang<10) {
-			//Si le score mérite d'être dans le classement on réécrit tout le fichier
+			//Si le score mï¿½rite d'ï¿½tre dans le classement on rï¿½ï¿½crit tout le fichier
 			boolean exist = Files.exists(Paths.get(FICHIERCLASSEMENTG)) ;
 			FileWriter file;
 			BufferedWriter buff ;
 			String chaine ;
 			if(exist) {
-				System.out.println("On a bien trouvé le fichier");
+				System.out.println("On a bien trouvï¿½ le fichier");
 				try {
 					file = new FileWriter(FICHIERCLASSEMENTG);
 					buff = new BufferedWriter(file) ;
 					for(int j=0 ; j<rang ; j++) {
 						try {
-							//On prépare la chaine à écrire dans le fichier
+							//On prï¿½pare la chaine ï¿½ ï¿½crire dans le fichier
 							chaine = tab[j][0] + ";" + tab[j][1] ;
 							buff.write(chaine+"\n") ;
 						} catch (IOException e) {
@@ -249,7 +248,7 @@ public class FonctionsUtilisateur {
 					resultat = 1;
 					for(int k=rang ; k<9 ; k++) {
 							try {
-								//On prépare la chaine à écrire dans le fichier
+								//On prï¿½pare la chaine ï¿½ ï¿½crire dans le fichier
 								chaine = tab[k][0] + ";" + tab[k][1] ;
 								buff.write(chaine+"\n") ;
 							} catch (IOException e) {
@@ -265,20 +264,19 @@ public class FonctionsUtilisateur {
 						}
 				} 
 				else {
-					System.out.println("Fichier non trouvé");
+					System.out.println("Fichier non trouvï¿½");
 					resultat = 0;
 				}
 			}
 		
 		else {
-			System.out.println("Le score n'est pas assez élevé pour être dans le top 10");
+			System.out.println("Le score n'est pas assez ï¿½levï¿½ pour ï¿½tre dans le top 10");
 			resultat = 2;
 		}	
 		return resultat;
 	}
 	
-	
-	String[] LireScore(String login) {
+	String[] LireScore(String login, ArrayList<Utilisateur> list) {
 		/**
 		 * Fonction qui renvoie le tableau des 10 meilleurs scores du joueur
 		 */
@@ -286,39 +284,39 @@ public class FonctionsUtilisateur {
 		for(Utilisateur u : list ) {
 			if(u.getName().equals(login)) {
 				System.out.println("fonction LireScore(login)");
-				System.out.println("on a trouvé le joueur "+login);
+				System.out.println("on a trouvï¿½ le joueur "+login);
 				for(int i = 0 ; i<10 ; i++) {
 					scores[i] = String.valueOf(u.getScores()[i]);
 				}
 				return scores;
 			}
 		}
-		System.out.println("On n'a pas trouvé le joueur "+login);
+		System.out.println("On n'a pas trouvï¿½ le joueur "+login);
 		return null;
 	}
 	
 	
-	String ChercherUtilisateur(String login) {
+	String ChercherUtilisateur(String login, ArrayList<Utilisateur> list) {
 		/**
 		 * Fonction qui recherche un utilisateur dans la liste avec son pseudo 
-		 * et retourne son mdp si il existe déjà, sinon retourne null
+		 * et retourne son mdp si il existe dï¿½jï¿½, sinon retourne null
 		 */
 		String mdp = null;
 		for(Utilisateur u : list) {
 			if(u.getName().equals(login)) {
-				System.out.println("On a trouvé l'utilisateur");
+				System.out.println("On a trouvï¿½ l'utilisateur");
 				mdp = u.getMdp();
 			}
 		}
 		return mdp;
 	}
 	
-	boolean AjouterUtilisateur(String login, String mdp) {
+	boolean AjouterUtilisateur(String login, String mdp, ArrayList<Utilisateur> list) {
 		/**
-		 * Fonction qui ajoute un utilisateur, si dans la liste il y  déjà un utilisateur avec le même
+		 * Fonction qui ajoute un utilisateur, si dans la liste il y  dï¿½jï¿½ un utilisateur avec le mï¿½me
 		 * login, on retourne false
 		 */
-		String deja = ChercherUtilisateur(login);
+		String deja = ChercherUtilisateur(login, list);
 		if(deja == null) {
 			Utilisateur user = new Utilisateur(login,mdp);
 			list.add(user);
@@ -326,17 +324,17 @@ public class FonctionsUtilisateur {
 			return true;
 		}
 		else {
-			System.out.println("Cet utilisateur existe déjà");
+			System.out.println("Cet utilisateur existe dï¿½jï¿½");
 			return false;
 		}
 	}
 	
-	int MettreScore(String login, int score) {
+	int MettreScore(String login, int score, ArrayList<Utilisateur> list) {
 		/**
-		 * Fonction qui ajoute le score d'un joueur dans son top 10 si le score le mérite
-		 * 0 = pb, 1 = ajouté, 2 = score trop petit
+		 * Fonction qui ajoute le score d'un joueur dans son top 10 si le score le mï¿½rite
+		 * 0 = pb, 1 = ajoutï¿½, 2 = score trop petit
 		 */
-		System.out.println("On est dans la fonction MettreScore à un joueur");
+		System.out.println("On est dans la fonction MettreScore ï¿½ un joueur");
 		int resultat = 0;
 		int rang = 10;
 		int j = 0 ;
@@ -344,18 +342,18 @@ public class FonctionsUtilisateur {
 		for(Utilisateur u : list) {
 			if(u.getName().equals(login)) {
 				//On cherche le joueur
-				System.out.println("on a trouvé le joueur "+login);
+				System.out.println("on a trouvï¿½ le joueur "+login);
 				scores = u.getScores();
 				while(scores[j]>score) {
-					//On test si le nouveau score est plus grand qu'un des scores enregistrés
-					//On note le rang où doit s'insérer le nouveau score
+					//On test si le nouveau score est plus grand qu'un des scores enregistrï¿½s
+					//On note le rang oï¿½ doit s'insï¿½rer le nouveau score
 					j ++;
 				}
 				rang = j;
 				System.out.println("Rang : " + rang);
 				if(rang<10) {
 					resultat = 1 ;
-					//on déplace les scores de 1 rang pour ceux qui sont inférieurs au nouveau score
+					//on dï¿½place les scores de 1 rang pour ceux qui sont infï¿½rieurs au nouveau score
 					for(int i = 9; i>rang ; i--) {
 						scores[i] = scores[i-1] ;
 						System.out.println("score rang " + i + " : " + scores[i]);
@@ -370,19 +368,19 @@ public class FonctionsUtilisateur {
 			}
 		}
 		if(resultat == 0) {
-			System.out.println("On n'a pas trouvé le joueur");
+			System.out.println("On n'a pas trouvï¿½ le joueur");
 		}
 		return resultat ;
 	}
 	
-	void ChargerTableauUsers() {
+	void ChargerTableauUsers(ArrayList<Utilisateur> list) {
 		/**
 		 * Fonction qui charge le fichier des identifints, mdp et les 10 meilleurs scores
 		 * dans la collection de Utilisateurs
-		 * Fonction utilisée au lancement du jeu
+		 * Fonction utilisï¿½e au lancement du jeu
 		 */
 		System.out.println("On est dans la fonction ChargerTableauUsers");
-		list = new ArrayList<Utilisateur>();
+		//list = new ArrayList<Utilisateur>();
 		boolean exist = Files.exists(Paths.get(FICHIERUTILISATEURS)) ;
 		FileReader file;
 		BufferedReader buff ;
@@ -390,7 +388,7 @@ public class FonctionsUtilisateur {
 		String[] chainebis = new String[2];
 		int[] scores = new int[10] ;
 		if(exist) {
-			//On lit par groupe de 11 lignes qui correspondent à un utilisateur
+			//On lit par groupe de 11 lignes qui correspondent ï¿½ un utilisateur
 			try {
 				file = new FileReader(FICHIERUTILISATEURS);
 				buff = new BufferedReader(file) ;
@@ -416,15 +414,15 @@ public class FonctionsUtilisateur {
 			}
 		}
 		else
-			System.out.println("Fichier Utilisateurs non trouvé");
+			System.out.println("Fichier Utilisateurs non trouvï¿½");
 		
 	}
 	
 	
-	void EcrireFichierUtilisateurs() {
+	void EcrireFichierUtilisateurs(ArrayList<Utilisateur> list) {
 		/**
-		 * Fonction qui réécrit le fichier utilisateurs quand on ferme le serveur
-		 * On réécrit totalement le fichier
+		 * Fonction qui rï¿½ï¿½crit le fichier utilisateurs quand on ferme le serveur
+		 * On rï¿½ï¿½crit totalement le fichier
 		 */
 		String chaine ;
 		boolean exist = Files.exists(Paths.get(FICHIERUTILISATEURS)) ;
@@ -453,38 +451,38 @@ public class FonctionsUtilisateur {
 			}
 		}
 		else
-			System.out.println("Fichier non trouvé");	
+			System.out.println("Fichier non trouvï¿½");	
 	}
 	
 	
 	//----------------------FONCTIONS DE TESTS------------------------------------------------------
-	void LireTab() {
+	void LireTab(ArrayList<Utilisateur> list) {
 		/**
 		 * Fonction pour tester
 		 */
 		String[][] tab = LireScoreG();
-		for(int i = 0 ; i<11 ; i++ ) {
+		for(int i = 0 ; i < 10 ; i ++ ) {
 			System.out.println(i + " - " + tab[i][0] + " - score : " + tab[i][1]);
 		}
 		
-		ChargerTableauUsers();
-		AfficherList();
-		String[] tab1 = LireScore("toto5");
+		ChargerTableauUsers(list);
+		AfficherList(list);
+		String[] tab1 = LireScore("toto5", list);
 		System.out.println("joueur : toto5");
 		for(int i = 0 ; i<10 ; i++ ) {
 			System.out.println(i+1 + " - " + tab1[i]);
 		}
 	}
 	
-	void AfficherUser(String login) {
-		String mdp = ChercherUtilisateur(login);
+	void AfficherUser(String login, ArrayList<Utilisateur> list) {
+		String mdp = ChercherUtilisateur(login, list);
 		System.out.println("Identifiant : " + login + " -  mdp : " + mdp);
 	}
 	
-	void AfficherList() {
+	void AfficherList(ArrayList<Utilisateur> list) {
 		int[] scores = new int[10];
 		int indice = 0;
-		ChargerTableauUsers();
+		ChargerTableauUsers(list);
 		int taille = list.size();
 		System.out.println("taille de la liste : " + taille);
 		for(Utilisateur u : list) {
@@ -496,7 +494,7 @@ public class FonctionsUtilisateur {
 			}
 		}
 	}
-	void AfficherList2() {
+	void AfficherList2(ArrayList<Utilisateur> list) {
 		int[] scores = new int[10];
 		int indice = 0;
 		int taille = list.size();

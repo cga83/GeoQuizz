@@ -29,9 +29,9 @@ public class PageScores {
 		 // création du menu
 		 Node menu = Utils.createMenu(this, root, joueur);
 		 
-		 // affichage des scores
-		 FonctionsUtilisateur csv = new FonctionsUtilisateur();
-		 String[] classement = csv.LireScore(joueur.getLogin()); // TO DO : mettre le login de manière dynamique
+		 // affichage des scores 
+		 //demande le classement au serveur
+		 String[] classement = joueur.getScorePerso();
 		 Text titre = new Text("Meilleurs scores");
 		 titre.setFont(Font.font("Verdana", 25));
 		 titre.setTextAlignment(TextAlignment.CENTER);

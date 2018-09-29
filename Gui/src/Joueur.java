@@ -59,7 +59,7 @@ public class Joueur extends JFrame{
 		boolean valide = false; 
 		//envoyer login mdp au serveur
 		try {
-			sortie.writeInt(1); //1 correspond � la connection
+			sortie.writeInt(action.connexion.ordinal());
 			sortie.writeUTF(pseudo);
 			sortie.writeUTF(mdp);
 			valide = entre.readBoolean(); // le serveur renvoie true ou false
@@ -81,7 +81,7 @@ public class Joueur extends JFrame{
 		boolean valide = false; 
 		//envoie login mdp au serveur
 		try {
-			sortie.writeInt(2); //2 correspond a l'inscription
+			sortie.writeInt(action.inscription.ordinal()); 
 			sortie.writeUTF(pseudo);
 			sortie.writeUTF(mdp);
 			valide = entre.readBoolean(); // le serveur renvoie true ou false
@@ -89,6 +89,20 @@ public class Joueur extends JFrame{
 			e.printStackTrace();
 		} 
 		return valide;		
+	}
+	
+	String[] getScorePerso() {
+		String[] scores = new String[10];
+		try {
+			sortie.writeInt(action.scorePerso.ordinal());
+			sortie.writeUTF(login);
+			for (int i = 0; i < 10; i ++) {
+				scores[i] = entre.readUTF();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		return scores;
 	}
 
 	

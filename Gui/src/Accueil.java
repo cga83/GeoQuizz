@@ -18,8 +18,8 @@ public class Accueil {
  
 	public Accueil(StackPane root, Joueur joueur) {
 		 this.root = root;
-		 FonctionsUtilisateur csv = new FonctionsUtilisateur();
-		 csv.LireTab();
+		 //FonctionsUtilisateur csv = new FonctionsUtilisateur();
+		 //csv.LireTab();
 		 construireAccueil(joueur);
 	}
 	 

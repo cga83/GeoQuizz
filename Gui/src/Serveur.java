@@ -3,6 +3,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Serveur {
 
@@ -10,6 +11,8 @@ public class Serveur {
 	private static final int NBMAXCONN = 4;
 	private static  int nbConn = 0;
 	private static boolean connected = true;
+	private static FonctionsUtilisateur csv = new FonctionsUtilisateur();
+	private static ArrayList<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -18,6 +21,10 @@ public class Serveur {
 
 	Serveur() {
 		System.out.println("Demarrage serveur");
+		
+		//Recupère tous les utilisateurs et mots de passe via fichier csv
+		csv.ChargerTableauUsers(utilisateurs);
+		
 		// attente du client
 		try {
 			GESTSOCKET = new ServerSocket(2000);
@@ -68,58 +75,50 @@ public class Serveur {
 	}
 	
 	void ecouteClient(DataInputStream in, DataOutputStream out, int numJoueur) throws IOException {
-		int action;
+		int actionDemander;
 		while(connected) {
 			//ecoute des clients
-			action = in.readInt();
-			if(action == 1) {
+			actionDemander = in.readInt();
+			if(actionDemander == action.connexion.ordinal()) {
 				System.out.println("tentative de connection de " + numJoueur);
 				String pseudo = in.readUTF();
 				String mdp = in.readUTF();
 				System.out.println(pseudo + " essaye de se connecter avec le mdp " + mdp);
 				out.writeBoolean(connexion(pseudo, mdp));
 			}	
-			else if(action == 2) {
+			else if(actionDemander == action.inscription.ordinal()) {
 				System.out.println("tentative d'inscription de" + numJoueur);
 				String pseudo = in.readUTF();
 				String mdp = in.readUTF();
 				System.out.println("joueur" + numJoueur + " essaye de s'inscrire avec le pseudo " + pseudo);
 				out.writeBoolean(inscription(pseudo, mdp));
-			}	
+			} else if(actionDemander == action.scorePerso.ordinal()) {
+				System.out.println("reccuperation score" + numJoueur);
+				String pseudo = in.readUTF();
+				String[] scores = new String[10];
+				scores = csv.LireScore(pseudo, utilisateurs);
+				for (int i = 0; i < 10; i ++) {
+					out.writeUTF(scores[i]);
+				}
+				
+			}
 		}	
 	}
 	
 	boolean connexion(String pseudo, String mdp) {
-		String mdpExistant = "test";
-		//mdpExistant = ChercherUtilisateur(pseudo)
-		mdpExistant = "test"; // TODO remplacer par ligne d'au dessus
-		if (mdpExistant == null) {
-			System.out.println("login inexistant");
-			return false;
-		} else {
-			if(mdp.equals(mdpExistant)) { // TODO retourner directement le mdp.equals(mdpExistant)
-				System.out.println("connexion réussi");
-				return true;
-			} else {
-				System.out.println("mauvais mot de passe");
-				return false;
-			}
-		}	
+		String mdpExistant = csv.ChercherUtilisateur(pseudo, utilisateurs);
+		return mdp.equals(mdpExistant);	
 	}	
 	
 	boolean inscription(String pseudo, String mdp) {
-		boolean pseudoExistant = false;
-		//TODO pseudoExistant = ChercherUtilisateur(pseudo)
-		if (pseudoExistant) {
+		boolean ajouter = csv.AjouterUtilisateur(pseudo ,mdp, utilisateurs);
+		if (!ajouter) {
 			System.out.println("login existant");
 			return false;
-		} else {
-			//TODO inserer dans les logins ce login et le mdp avec scores à 0
-			return true;
-		}
-		
+		} 
+		csv.EcrireFichierUtilisateurs(utilisateurs);
+		return true;
 	}
-	
 }
 
 
