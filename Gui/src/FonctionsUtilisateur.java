@@ -14,8 +14,7 @@ public class FonctionsUtilisateur {
 	private static final String FICHIERUTILISATEURS = "utilisateurs.csv";
 	private static final String FICHIERCLASSEMENTG = "classementG.csv";
 	private static final String FICHIERCLASSEMENTP = "classementP.csv";
-	private static final String COMMUNESDEPARTEMENTS = "eucircos_regions_departements_circonscriptions_communes_gps.csv" ;
-	private static final int TAILLE = 36840 ;
+	
 	ArrayList<Utilisateur> list;
 
 
@@ -143,17 +142,16 @@ public class FonctionsUtilisateur {
 		 */
 		int resultat = 2;
 		int rang = 10;
+		int i = 0 ;
 		// 0=pb, 1=ajouté, 2=trop petit
 		String [][] tab = LireScoreP() ;
 		//On charge tout d'abord le fichier grâce à la fonction LireScoreP afin de ne pas avoir un fichier
 		//à comparer mais un tableau
-		for (int i = 0 ; i<10 ; i++) {
-			if(Integer.parseInt(tab[i][1]) > score) {
-				rang = i;
-				//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
-				//C'est à ce rang que nous allons inscrire le nouveau score
-			}
-		}
+		while(Integer.parseInt(tab[i][1]) > score)
+			i++;
+		rang = i ;
+		//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
+		//C'est à ce rang que nous allons inscrire le nouveau score
 		if(rang<10) {
 			//Si le score mérite d'être dans le classement on réécrit tout le fichier
 			boolean exist = Files.exists(Paths.get(FICHIERCLASSEMENTP)) ;
@@ -165,10 +163,10 @@ public class FonctionsUtilisateur {
 				try {
 					file = new FileWriter(FICHIERCLASSEMENTP);
 					buff = new BufferedWriter(file) ;
-					for(int i=0 ; i<rang ; i++) {
+					for(int j=0 ; j<rang ; j++) {
 						try {
 							//On prépare la chaine à écrire dans le fichier
-							chaine = tab[i][0] + ";" + tab[i][1] ;
+							chaine = tab[j][0] + ";" + tab[j][1] ;
 							buff.write(chaine+"\n") ;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -178,10 +176,81 @@ public class FonctionsUtilisateur {
 					chaine = login + ";" + String.valueOf(score) ;
 					buff.write(chaine+"\n") ;
 					resultat = 1;
-					for(int i=rang ; i<10 ; i++) {
+					for(int k=rang ; k<9 ; k++) {
 							try {
 								//On prépare la chaine à écrire dans le fichier
-								chaine = tab[i][0] + ";" + tab[i][1] ;
+								chaine = tab[k][0] + ";" + tab[k][1] ;
+								buff.write(chaine+"\n") ;
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						buff.close();
+						file.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				} 
+				else {
+					System.out.println("Fichier non trouvé");
+					resultat = 0;
+				}
+			}
+		
+		else {
+			System.out.println("Le score n'est pas assez élevé pour être dans le top 10");
+			resultat = 2;
+		}	
+		return resultat;
+	}
+	
+	int MettreScoreG(String login, int score) {
+		/**
+		 * Fonction qui, suite à une partie, regarde le score global et si le nouveu score mérite
+		 * d'être dans le top 10, on l'inscrit
+		 */
+		int resultat = 2;
+		int rang = 10;
+		int i = 0 ;
+		// 0=pb, 1=ajouté, 2=trop petit
+		String [][] tab = LireScoreG() ;
+		//On charge tout d'abord le fichier grâce à la fonction LireScoreG afin de ne pas avoir un fichier
+		//à comparer mais un tableau
+		while(Integer.parseInt(tab[i][1]) > score)
+			i++;
+		rang = i ;
+		//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
+		//C'est à ce rang que nous allons inscrire le nouveau score
+		if(rang<10) {
+			//Si le score mérite d'être dans le classement on réécrit tout le fichier
+			boolean exist = Files.exists(Paths.get(FICHIERCLASSEMENTG)) ;
+			FileWriter file;
+			BufferedWriter buff ;
+			String chaine ;
+			if(exist) {
+				System.out.println("On a bien trouvé le fichier");
+				try {
+					file = new FileWriter(FICHIERCLASSEMENTG);
+					buff = new BufferedWriter(file) ;
+					for(int j=0 ; j<rang ; j++) {
+						try {
+							//On prépare la chaine à écrire dans le fichier
+							chaine = tab[j][0] + ";" + tab[j][1] ;
+							buff.write(chaine+"\n") ;
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					chaine = login + ";" + String.valueOf(score) ;
+					buff.write(chaine+"\n") ;
+					resultat = 1;
+					for(int k=rang ; k<9 ; k++) {
+							try {
+								//On prépare la chaine à écrire dans le fichier
+								chaine = tab[k][0] + ";" + tab[k][1] ;
 								buff.write(chaine+"\n") ;
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
@@ -441,71 +510,4 @@ public class FonctionsUtilisateur {
 			}
 		}
 	}
-	
-	
-	//---------------------------------FONCTIONS CSV-----------------------------------------------
-	
-	
-	String DepartementRandom() {
-		String departement = null;
-		FileReader file ;
-		BufferedReader buff ;
-		String chaine = null;
-		int i = 0 ;
-		String[] tab;
-		boolean  exist = Files.exists(Paths.get(COMMUNESDEPARTEMENTS)) ;
-		
-		if(exist) {
-			try {
-				file = new FileReader(COMMUNESDEPARTEMENTS);
-				buff = new BufferedReader(file) ;
-				//On tire au hasard la ligne dans le fichier que l'on va conserver
-				int valeur = (int) (Math.random() * ( TAILLE )) ;
-				System.out.println("taille : " + TAILLE);
-				System.out.println("numéro tiré au hasard : " + valeur);
-				while(i<valeur) {
-					try {
-						chaine = buff.readLine();
-						i++;
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				try {
-					chaine = buff.readLine();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else
-			System.out.println("Le fichier n'existe pas");
-		System.out.println("chaine lue : " + chaine);
-		tab = chaine.split(";") ;
-		departement = tab[5];
-		return departement ;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
