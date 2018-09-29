@@ -48,7 +48,7 @@ public class PageClassementMeilleurScore {
 		 
 		 // affichage des scores
 		 // TO DO : changer la fonction quand elle sera prête
-		 FonctionsCSV csv = new FonctionsCSV();
+		 FonctionsUtilisateur csv = new FonctionsUtilisateur();
 		 String[][] classement = csv.LireScoreG();
 		 Text titre = new Text("Joueur - Score");
 		 titre.setFont(Font.font("Verdana", 25));

@@ -47,7 +47,7 @@ public class PageClassement {
 		 ImageView image = new ImageView(new Image("podium.png"));
 		 
 		 // affichage des scores
-		 FonctionsCSV csv = new FonctionsCSV();
+		 FonctionsUtilisateur csv = new FonctionsUtilisateur();
 		 String[][] classement = csv.LireScoreG();
 		 Text titre = new Text("Joueur - Score");
 		 titre.setFont(Font.font("Verdana", 25));

@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class FonctionsCSV {
+public class FonctionsUtilisateur {
 
 	private static final String FICHIERUTILISATEURS = "utilisateurs.csv";
 	private static final String FICHIERCLASSEMENTG = "classementG.csv";
@@ -20,7 +20,7 @@ public class FonctionsCSV {
 
 
 	
-	FonctionsCSV() {
+	FonctionsUtilisateur() {
 		System.out.println("Appel de la classe FonctionsCSV");
 	}
 	
@@ -209,15 +209,19 @@ public class FonctionsCSV {
 	}
 	
 	
-	int[] LireScore(String login) {
+	String[] LireScore(String login) {
 		/**
 		 * Fonction qui renvoie le tableau des 10 meilleurs scores du joueur
 		 */
+		String[] scores = new String[10];
 		for(Utilisateur u : list ) {
 			if(u.getName().equals(login)) {
 				System.out.println("fonction LireScore(login)");
 				System.out.println("on a trouvé le joueur "+login);
-				return u.getScores();
+				for(int i = 0 ; i<10 ; i++) {
+					scores[i] = String.valueOf(u.getScores()[i]);
+				}
+				return scores;
 			}
 		}
 		System.out.println("On n'a pas trouvé le joueur "+login);
@@ -396,7 +400,7 @@ public class FonctionsCSV {
 		
 		ChargerTableauUsers();
 		AfficherList();
-		int[] tab1 = LireScore("toto5");
+		String[] tab1 = LireScore("toto5");
 		System.out.println("joueur : toto5");
 		for(int i = 0 ; i<10 ; i++ ) {
 			System.out.println(i+1 + " - " + tab1[i]);

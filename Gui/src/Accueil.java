@@ -18,7 +18,7 @@ public class Accueil {
  
 	public Accueil(StackPane root, Joueur joueur) {
 		 this.root = root;
-		 FonctionsCSV csv = new FonctionsCSV();
+		 FonctionsUtilisateur csv = new FonctionsUtilisateur();
 		 csv.LireTab();
 		 construireAccueil(joueur);
 	}

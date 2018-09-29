@@ -30,7 +30,7 @@ public class PageScores {
 		 Node menu = Utils.createMenu(this, root, joueur);
 		 
 		 // affichage des scores
-		 FonctionsCSV csv = new FonctionsCSV();
+		 FonctionsUtilisateur csv = new FonctionsUtilisateur();
 		 String[] classement = csv.LireScore(joueur.getLogin()); // TO DO : mettre le login de manière dynamique
 		 Text titre = new Text("Meilleurs scores");
 		 titre.setFont(Font.font("Verdana", 25));
