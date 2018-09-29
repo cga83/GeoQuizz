@@ -4,5 +4,6 @@ public enum action {
 	inscription,
 	scorePerso,
 	scorePartie, // meilleurs scores sur une partie
-	scoreGeneral // meilleurs scores cummulés
+	scoreGeneral, // meilleurs scores cummulés
+	deconnexion
 }

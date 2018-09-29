@@ -133,5 +133,13 @@ public class Joueur extends JFrame{
 		return scores;
 	}
 	
+	void deconexion() {
+		try {
+			sortie.writeInt(action.deconnexion.ordinal());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
 }
 

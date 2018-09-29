@@ -116,6 +116,9 @@ public class Serveur {
 					out.writeUTF(scores[i][0]);
 					out.writeUTF(scores[i][1]);
 				}
+			} else if (actionDemander == action.deconnexion.ordinal()) {
+				System.out.println("deconexion du joueur " + numJoueur);
+				csv.EcrireFichierUtilisateurs(utilisateurs);
 			}
 		}	
 	}
