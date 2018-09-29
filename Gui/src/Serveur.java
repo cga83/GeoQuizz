@@ -100,7 +100,22 @@ public class Serveur {
 				for (int i = 0; i < 10; i ++) {
 					out.writeUTF(scores[i]);
 				}
-				
+			} else if (actionDemander == action.scorePartie.ordinal()) {
+				System.out.println("reccuperation meilleur score sur une partie pour" + numJoueur);
+				String[][] scores = new String[10][2];
+				scores = csv.LireScoreP();
+				for (int i = 0; i < 10; i ++) {
+					out.writeUTF(scores[i][0]);
+					out.writeUTF(scores[i][1]);
+				}
+			} else if (actionDemander == action.scoreGeneral.ordinal()) {
+				System.out.println("reccuperation meilleur score cumulée pour" + numJoueur);
+				String[][] scores = new String[10][2];
+				scores = csv.LireScoreG();
+				for (int i = 0; i < 10; i ++) {
+					out.writeUTF(scores[i][0]);
+					out.writeUTF(scores[i][1]);
+				}
 			}
 		}	
 	}

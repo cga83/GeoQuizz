@@ -105,6 +105,33 @@ public class Joueur extends JFrame{
 		return scores;
 	}
 
+	String[][] getMeilleursScoresPartie(){
+		String[][] scores = new String[10][2];
+		try {
+			sortie.writeInt(action.scorePartie.ordinal());
+			for (int i = 0; i < 10; i ++) {
+				scores[i][0] = entre.readUTF();
+				scores[i][1] = entre.readUTF();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		return scores;
+	}
+	
+	String[][] getMeilleursScoresGeneral(){
+		String[][] scores = new String[10][2];
+		try {
+			sortie.writeInt(action.scoreGeneral.ordinal());
+			for (int i = 0; i < 10; i ++) {
+				scores[i][0] = entre.readUTF();
+				scores[i][1] = entre.readUTF();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		return scores;
+	}
 	
 }
 
