@@ -13,27 +13,25 @@ import javafx.util.Duration;
      
 // classe accueil = interface utilisateur pour la connexion et/ou inscription
 public class Accueil {
-	// création de la racine
+	// crï¿½ation de la racine
 	private StackPane root;
  
 	public Accueil(StackPane root, Joueur joueur) {
 		 this.root = root;
-		 //FonctionsUtilisateur csv = new FonctionsUtilisateur();
-		 //csv.LireTab();
 		 construireAccueil(joueur);
 	}
 	 
 	 // construction des objets que l'on va afficher
 	 private void construireAccueil(Joueur joueur)  
 	 {
-		 // on enlève les objets de la page de connection au serveur
+		 // on enlï¿½ve les objets de la page de connection au serveur
 		 root.getChildren().clear();
 		 
 		 // creation d'un borderPane auquel on va ajouter les objets
 		 BorderPane pane = new BorderPane();
 		 
-		 // définition des objets graphiques
-		 // création du menu
+		 // dï¿½finition des objets graphiques
+		 // crï¿½ation du menu
 		 Node menu = Utils.createMenu(this, root, joueur);
 		
 		 // ajout d'une image
@@ -42,7 +40,7 @@ public class Accueil {
 		 geoImage.setFitHeight(450);
 		
 		 // ajout de boutons dans une vbox
-		 // création et positionnement de la vbox
+		 // crï¿½ation et positionnement de la vbox
 		 VBox vboxBoutons = new VBox();
 		 vboxBoutons.setAlignment(Pos.BOTTOM_CENTER);
 		 vboxBoutons.setSpacing(20);
@@ -60,7 +58,7 @@ public class Accueil {
 			 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.INSCRIPTION, joueur);
 		});
 		boutonInscription.getStyleClass().add("buttonStyle1");
-		// ajout des boutons à la vbox
+		// ajout des boutons ï¿½ la vbox
 		vboxBoutons.getChildren().addAll(boutonConnexion, boutonInscription);
 		vboxBoutons.setPickOnBounds(false);
 		
@@ -69,10 +67,10 @@ public class Accueil {
 		pane.setCenter(geoImage);
 		pane.setBottom(vboxBoutons);
 		
-		// ajout de tous les objets à la racine (qui est reliée à primaryStage)
+		// ajout de tous les objets ï¿½ la racine (qui est reliï¿½e ï¿½ primaryStage)
 	    root.getChildren().add(pane);
 	 
-	    // ajout d'une transition sur l'opacité de l'image
+	    // ajout d'une transition sur l'opacitï¿½ de l'image
 	    FadeTransition transitionImage = new FadeTransition(Duration.millis(3000), geoImage);
 	    transitionImage.setFromValue(0.01);
 	    transitionImage.setToValue(1.0);

@@ -13,6 +13,13 @@ public class Main extends Application {
 	 // lancement
 	 public static void main(String[] args) {
 		 launch(args);
+		 FonctionsCSV csv = new FonctionsCSV();
+		 String[] cap = csv.CouplePaysCapitale();
+		 System.out.println("Pays : " + cap[0] + " - capitale : " + cap[1]);
+		 String pays = csv.PaysRandom();
+		 System.out.println("Pays tiré au sort : " + pays);
+		 String capitale = csv.CapitaleRandom();
+		 System.out.println("Capitale tiré au sort : " + capitale);
 	 }
 	 
 	 // lancement de l'application
