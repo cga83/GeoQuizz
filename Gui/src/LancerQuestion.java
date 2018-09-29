@@ -87,43 +87,9 @@ public class LancerQuestion {
 		question.setFont(Font.font("Verdana", 25));
 		question.setTextAlignment(TextAlignment.CENTER);
 		question.setFill(Color.WHITE);
-
-		String bonneReponse = questionReponses[4];
-
-		Button reponse1 = new Button(reponses[0]);
-		Button reponse2 = new Button(reponses[1]);
-		Button reponse3 = new Button(reponses[2]);
-		Button reponse4 = new Button(reponses[3]);
-		reponse1.setOnAction(value -> {
-			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse1, reponse2, reponse3, reponse4, bonneReponse);
-		});
-
-		reponse2.setOnAction(value -> {
-			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse2, reponse1, reponse3, reponse4, bonneReponse);
-		});
-
-		reponse3.setOnAction(value -> {
-			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse3, reponse2, reponse1, reponse4, bonneReponse);
-		});
-
-		reponse4.setOnAction(value -> {
-			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse4, reponse2, reponse3, reponse1, bonneReponse);
-		});
-		reponse1.getStyleClass().add("buttonStyle1");
-		reponse2.getStyleClass().add("buttonStyle1");
-		reponse3.getStyleClass().add("buttonStyle1");
-		reponse4.getStyleClass().add("buttonStyle1");
-		vboxQuestionReponses.getChildren().addAll(hboxUtils, question, reponse1, reponse2, reponse3, reponse4);
-
-		pane.setTop(menu);
-		pane.setCenter(vboxQuestionReponses);
-
-		// ajout à la racine
-		root.getChildren().addAll(pane);
 		
-		// TO DO : supprimer la ligne qui suit !
+		// TODO : supprimer la ligne qui suit !
 		String[] questionReponsesRound2 = { "Département 13 ?", "Haute Corse", "Var", "Seine St Denis","Bouches du Rhones" };
-		
 		// Création d'une timeline pour qu'une nouvelle question soit affichée au bout de 5s
 		Timeline timeline = new Timeline();
 		KeyFrame jeu = new KeyFrame(Duration.seconds(5),
@@ -149,5 +115,46 @@ public class LancerQuestion {
 		// Toutes les secondes, on diminue le temps à afficher de 1
 		timeline.getKeyFrames().addAll(jeu, countSeconds[0], countSeconds[1], countSeconds[2], countSeconds[3], countSeconds[4]);
 		timeline.play();
+
+		String bonneReponse = questionReponses[4];
+
+		Button reponse1 = new Button(reponses[0]);
+		Button reponse2 = new Button(reponses[1]);
+		Button reponse3 = new Button(reponses[2]);
+		Button reponse4 = new Button(reponses[3]);
+		reponse1.setOnAction(value -> {
+			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse1, reponse2, reponse3, reponse4, bonneReponse);
+			timeline.stop();
+		});
+
+		reponse2.setOnAction(value -> {
+			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse2, reponse1, reponse3, reponse4, bonneReponse);
+			timeline.stop();
+		});
+
+		reponse3.setOnAction(value -> {
+			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse3, reponse2, reponse1, reponse4, bonneReponse);
+			timeline.stop();
+		});
+
+		reponse4.setOnAction(value -> {
+			Utils.checkResponse(root, joueur, round, score, NBQUESTION, reponse4, reponse2, reponse3, reponse1, bonneReponse);
+			timeline.stop();
+		});
+		reponse1.getStyleClass().add("buttonStyle1");
+		reponse2.getStyleClass().add("buttonStyle1");
+		reponse3.getStyleClass().add("buttonStyle1");
+		reponse4.getStyleClass().add("buttonStyle1");
+		vboxQuestionReponses.getChildren().addAll(hboxUtils, question, reponse1, reponse2, reponse3, reponse4);
+
+		pane.setTop(menu);
+		pane.setCenter(vboxQuestionReponses);
+
+		// ajout à la racine
+		root.getChildren().addAll(pane);
+		
+		
+		
+		
 	}
 }
