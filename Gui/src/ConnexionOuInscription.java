@@ -3,6 +3,7 @@
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -58,7 +59,7 @@ public class ConnexionOuInscription {
 		 hboxMdp.setAlignment(Pos.CENTER);
 		 Text texteMdp = new Text("mot de passe : ");
 		 texteMdp.setFill(Color.WHITE);
-		 TextField choixMdp = new TextField();
+		 PasswordField choixMdp = new PasswordField();
 		 hboxMdp.getChildren().addAll(texteMdp, choixMdp);
 		 
 		 // bouton pour valider

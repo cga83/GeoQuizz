@@ -90,30 +90,21 @@ public class LancerQuestion {
 		
 		// TODO : supprimer la ligne qui suit !
 		String[] questionReponsesRound2 = { "Département 13 ?", "Haute Corse", "Var", "Seine St Denis","Bouches du Rhones" };
+		
 		// Création d'une timeline pour qu'une nouvelle question soit affichée au bout de 5s
-		Timeline timeline = new Timeline();
-		KeyFrame jeu = new KeyFrame(Duration.seconds(5),
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), 
 			a -> {
 				new LancerQuestion(root, joueur, questionReponsesRound2, round + 1, score);
-		});
-		
-		// Création du timer : chaque keyframe va compter 1s
-		KeyFrame[] countSeconds = new KeyFrame[TEMPSPARQUESTION];
-		for (int i = 0; i<TEMPSPARQUESTION; i++) {
-		
-			countSeconds[i] = new KeyFrame(Duration.seconds(i),
-				a -> {
-					int tempsAffiche = tempsRestant - tempsEcoule;
-					tempsEcoule++;
-					if (tempsAffiche<=2) texteTempsRestant.setStyle("-fx-fill:red;");
-					texteTempsRestant.setText("Temps : " + tempsAffiche);
-			});
-		}
-		
-		// On ajoute tous les éléments à la timeline:
-		// Au bout de 5s, la question change
-		// Toutes les secondes, on diminue le temps à afficher de 1
-		timeline.getKeyFrames().addAll(jeu, countSeconds[0], countSeconds[1], countSeconds[2], countSeconds[3], countSeconds[4]);
+		}));
+		Timeline timelineCounter = new Timeline(new KeyFrame(Duration.seconds(1),
+			b -> {
+				tempsEcoule++;
+				int tempsAffiche = tempsRestant - tempsEcoule;
+				if (tempsAffiche<=2) texteTempsRestant.setStyle("-fx-fill:red;");
+				texteTempsRestant.setText("Temps : " + tempsAffiche);
+		}));
+		timelineCounter.setCycleCount(Timeline.INDEFINITE); 
+		timelineCounter.play();
 		timeline.play();
 
 		String bonneReponse = questionReponses[4];
