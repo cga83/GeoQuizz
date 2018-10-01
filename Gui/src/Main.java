@@ -33,8 +33,8 @@ public class Main extends Application {
 	 void construireScene(Stage primaryStage)  
 	 {
 		 // définition de la fenêtre
-		 int largeur = 500;
-		 int hauteur = 800;
+		 int largeur = 600;
+		 int hauteur = 900;
 		 
 		 root = new StackPane();
 		

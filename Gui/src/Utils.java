@@ -168,4 +168,9 @@ public class Utils {
 				timeline.play();
 			}
 	}
+	
+	public void stopTimeline(Timeline timeline1, Timeline timeline2) {
+		timeline1.stop();
+		timeline2.stop();
+	}
 }
