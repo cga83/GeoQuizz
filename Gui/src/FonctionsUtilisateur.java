@@ -146,8 +146,13 @@ public class FonctionsUtilisateur {
 		String [][] tab = LireScoreP() ;
 		//On charge tout d'abord le fichier gr�ce � la fonction LireScoreP afin de ne pas avoir un fichier
 		//� comparer mais un tableau
-		while(Integer.parseInt(tab[i][1]) > score)
+
+		while(Integer.parseInt(tab[i][1]) > score && i < 9) 
 			i++;
+		if(Integer.parseInt(tab[i][1]) > score && i == 9) {
+			i=10;
+		}
+			
 		rang = i ;
 		//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
 		//C'est � ce rang que nous allons inscrire le nouveau score
@@ -217,8 +222,11 @@ public class FonctionsUtilisateur {
 		String [][] tab = LireScoreG() ;
 		//On charge tout d'abord le fichier gr�ce � la fonction LireScoreG afin de ne pas avoir un fichier
 		//� comparer mais un tableau
-		while(Integer.parseInt(tab[i][1]) > score)
+		while(Integer.parseInt(tab[i][1]) > score && i < 9)
 			i++;
+		if(Integer.parseInt(tab[i][1]) > score && i == 9) {
+			i=10;
+		}
 		rang = i ;
 		//Si dans le top 10 il y a un score plus grand que le nouveau score on note le rang
 		//C'est � ce rang que nous allons inscrire le nouveau score
@@ -295,6 +303,38 @@ public class FonctionsUtilisateur {
 		return null;
 	}
 	
+	String LireScoreTot(String login, ArrayList<Utilisateur> list) {
+		/**
+		 * fonction qui renvoie le score total du joueur
+		 */
+		for (Utilisateur u : list) {
+			if (u.getName().equals(login)) {
+				return String.valueOf(u.getScoreTot());
+			}
+		}
+		return null;
+	}
+	
+	int MettreScoreTot(String login, int score, ArrayList<Utilisateur> list) {
+		/**
+		 * Fonction qui ajoute le score d'un joueur a son score tot
+		 */
+		System.out.println("On est dans la fonction MettreScoreTot a joueur");
+		int resultat = 0;
+		for(Utilisateur u : list) {
+			if(u.getName().equals(login)) {
+				//On cherche le joueur
+				System.out.println("on a trouv� le joueur "+login);
+				int scoreTot = u.getScoreTot();
+				u.setScoreTot(score + scoreTot);
+			}
+		}
+		if(resultat == 0) {
+			System.out.println("On n'a pas trouv� le joueur");
+		}
+		return resultat;
+	}
+	
 	
 	String ChercherUtilisateur(String login, ArrayList<Utilisateur> list) {
 		/**
@@ -344,10 +384,13 @@ public class FonctionsUtilisateur {
 				//On cherche le joueur
 				System.out.println("on a trouv� le joueur "+login);
 				scores = u.getScores();
-				while(scores[j]>score) {
+				while(scores[j]>score && j < 9) {
 					//On test si le nouveau score est plus grand qu'un des scores enregistr�s
 					//On note le rang o� doit s'ins�rer le nouveau score
 					j ++;
+				}
+				if(scores[j]>score && j == 9) {
+					j=10;
 				}
 				rang = j;
 				System.out.println("Rang : " + rang);
@@ -387,6 +430,7 @@ public class FonctionsUtilisateur {
 		String chaine = null;
 		String[] chainebis = new String[2];
 		int[] scores = new int[10] ;
+		int scoreTot;
 		if(exist) {
 			//On lit par groupe de 11 lignes qui correspondent � un utilisateur
 			try {
@@ -398,8 +442,10 @@ public class FonctionsUtilisateur {
 							scores[i] = Integer.parseInt(buff.readLine());
 							chainebis = chaine.split(";");
 						}
+						scoreTot = Integer.parseInt(buff.readLine());
 						Utilisateur user = new Utilisateur(chainebis[0], chainebis[1]) ;
 						user.setScores(scores);
+						user.setScoreTot(scoreTot);
 						list.add(user);
 					}
 					buff.close();
@@ -441,6 +487,7 @@ public class FonctionsUtilisateur {
 					for(int i = 0; i<10; i++) {
 						buff.write(String.valueOf(scores[i])+"\n");
 					}
+					buff.write(String.valueOf(u.getScoreTot()) +"\n");
 				}
 				
 				buff.close();

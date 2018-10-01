@@ -120,6 +120,14 @@ public class Serveur {
 				System.out.println("deconexion du joueur " + numJoueur);
 				csv.EcrireFichierUtilisateurs(utilisateurs);
 				nbConn --;
+			} else if (actionDemander == action.nouveauScore.ordinal()) {
+				System.out.println("joueur" + numJoueur + "vient de finir une partie");
+				String pseudo = in.readUTF();
+				int score = in.readInt();
+				csv.MettreScore(pseudo, score, utilisateurs);
+				csv.MettreScoreTot(pseudo, score, utilisateurs);
+				csv.MettreScoreG(pseudo, Integer.valueOf(csv.LireScoreTot(pseudo, utilisateurs)));
+				csv.MettreScoreP(pseudo, score);
 			}
 		}	
 	}

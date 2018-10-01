@@ -163,6 +163,7 @@ public class Utils {
 				timeline.play();
 			} else {
 				final int scoreFinal = score;
+				joueur.giveScoreToserver(scoreFinal);
 				Timeline timeline = new Timeline(
 						new KeyFrame(Duration.seconds(0.5), a -> new PartieFinie(root, joueur, scoreFinal)));
 				timeline.play();

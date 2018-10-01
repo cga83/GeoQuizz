@@ -141,5 +141,15 @@ public class Joueur extends JFrame{
 		} 
 	}
 	
+	void giveScoreToserver(int score) {
+		try {
+			sortie.writeInt(action.nouveauScore.ordinal());
+			sortie.writeUTF(login);
+			sortie.writeInt(score);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
 }
 

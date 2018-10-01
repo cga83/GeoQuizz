@@ -3,6 +3,7 @@ public class Utilisateur  {
 	private String nom;
 	private String mdp;
 	private int[] scores = new int[10];
+	private int scoretot = 0;
 	
 	Utilisateur (String name, String pw) {
 		this.nom = name;
@@ -31,6 +32,14 @@ public class Utilisateur  {
 	
 	int[] getScores() {
 		return this.scores;
+	}
+	
+	void setScoreTot(int score) {
+		this.scoretot = score;
+	}
+	
+	int getScoreTot() {
+		return this.scoretot;
 	}
 
 }

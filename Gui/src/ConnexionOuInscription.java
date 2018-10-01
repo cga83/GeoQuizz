@@ -68,8 +68,6 @@ public class ConnexionOuInscription {
 		 boutonValider.setOnAction(value ->  {
 			 String mdp = choixMdp.getText();
 			 String pseudo = choixPseudo.getText();
-			 String message = "Tentative de connexion de " + pseudo + " avec le mdp " + mdp + "."; //TODO a retirer en version final
-			 Utils.createPopup(message); 
 			 if (mode==Mode.CONNEXION) {
 				 // si la connexion a marché ...
 				 // on peut setter le login du joueur
@@ -83,6 +81,8 @@ public class ConnexionOuInscription {
 			 }
 			 else {
 				 if(joueur.inscrire(pseudo, mdp)) {
+					 String message = "Ca y est, "+ pseudo + " tu es inscrit :) Maintenant connecte toi ci-dessous!" ;
+					 Utils.createPopup(message);
 					// si l'inscription a marché, on redirige vers la page de connexion
 					 new ConnexionOuInscription(root, ConnexionOuInscription.Mode.CONNEXION, joueur);
 				 }
