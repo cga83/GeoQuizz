@@ -73,7 +73,7 @@ public class PartieFinie {
 		 boutonRejouer.getStyleClass().add("buttonStyle1");
 		 boutonRejouer.setOnAction(value ->  {
 			 // TO DO : remplacer cette ligne
-			 String[] questionReponsesRound1 = {"Quelle est la capitale de la France ?", "Marseille", "Lyon", "Gardanne", "Paris"};
+			 String[] questionReponsesRound1 = joueur.getQuestion();
 			 new LancerQuestion(root, joueur, questionReponsesRound1, 1);
 		 });
 		 Button boutonAccueil = new Button("Accueil");
