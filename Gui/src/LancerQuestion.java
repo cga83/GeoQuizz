@@ -89,7 +89,7 @@ public class LancerQuestion {
 		question.setFill(Color.WHITE);
 		
 		// TODO : supprimer la ligne qui suit !
-		String[] questionReponsesRound2 = { "Département 13 ?", "Haute Corse", "Var", "Seine St Denis","Bouches du Rhones" };
+		String[] questionReponsesRound2 = joueur.getQuestion();
 		
 		// Création d'une timeline pour qu'une nouvelle question soit affichée au bout de 5s
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), 

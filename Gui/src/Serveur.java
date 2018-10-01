@@ -146,6 +146,127 @@ public class Serveur {
 		csv.EcrireFichierUtilisateurs(utilisateurs);
 		return true;
 	}
+	
+	String[] getQuestion() {
+		String[] reponses = new String[5];
+		FonctionsCSV csv = new FonctionsCSV();
+		int indice = (int) (Math.random() * ( 6 )) ;
+		System.out.println("tirage au sort : " + indice);
+		if(indice == 0) { // Deviner le numï¿½ro du dï¿½partement ï¿½ partir du nom
+			String[] bonnereponse = csv.CoupleDepartementNumero();
+			String rep1 = csv.NumeroDepRandom();
+			String rep2 = csv.NumeroDepRandom();
+			String rep3 = csv.NumeroDepRandom();
+			while(rep1.equals(bonnereponse[1]))
+				rep1 = csv.NumeroDepRandom();
+			while(rep2.equals(bonnereponse[1]) || rep2.equals(rep1))
+				rep1 = csv.NumeroDepRandom();
+			while(rep3.equals(bonnereponse[1]) || rep3.equals(rep1) || rep3.equals(rep2))
+				rep1 = csv.NumeroDepRandom();
+			reponses[0] = "Quel est le numéro du département " + bonnereponse[0] + " ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[1];
+		} else if (indice == 1) { // Deviner le nom du dï¿½partement ï¿½ partir du numï¿½ro
+			String[] bonnereponse = csv.CoupleDepartementNumero();
+			String rep1 = csv.DepartementRandom();
+			String rep2 = csv.DepartementRandom();
+			String rep3 = csv.DepartementRandom();
+			while(rep1.equals(bonnereponse[0]))
+				rep1 = csv.DepartementRandom();
+			while(rep2.equals(bonnereponse[0]) ||  rep2.equals(rep1))
+				rep2 = csv.DepartementRandom();
+			while(rep3.equals(bonnereponse[0]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
+				rep3 = csv.DepartementRandom();
+			reponses[0] = "Quel département a le numéro " +bonnereponse[1] + " ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[0];
+		} else if (indice == 2) { // Deviner dans quelle rï¿½gion est ce dï¿½partement
+			String[] bonnereponse = csv.CoupleRegionDepartement();
+			String rep1 = csv.RegionRandom();
+			String rep2 = csv.RegionRandom();
+			String rep3 = csv.RegionRandom();
+			while(rep1.equals(bonnereponse[0]))
+				rep1 = csv.RegionRandom();
+			while(rep2.equals(bonnereponse[0]) ||  rep2.equals(rep1))
+				rep2 = csv.RegionRandom();
+			while(rep3.equals(bonnereponse[0]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
+				rep3 = csv.RegionRandom();
+			reponses[0] = "Dans quelle région se trouve ce département : " + bonnereponse[1] + " ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[0];
+		} else if (indice == 3) { // Deviner le chef lieu d'une rï¿½gion donnï¿½e
+			String[] bonnereponse = csv.CoupleRegionCheflieu();
+			String rep1 = csv.CheflieuRandom();
+			String rep2 = csv.CheflieuRandom();
+			String rep3 = csv.CheflieuRandom();
+			while(rep1.equals(bonnereponse[1]))
+				rep1 = csv.CheflieuRandom();
+			while(rep2.equals(bonnereponse[1]) ||  rep2.equals(rep1))
+				rep2 = csv.CheflieuRandom();
+			while(rep3.equals(bonnereponse[1]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
+				rep3 = csv.CheflieuRandom();
+			reponses[0] = "Quel est le chef-lieu de la région : " + bonnereponse[0] + " ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[1];
+		} else if (indice == 4) { // Dveiner la rï¿½gion d'un chef lieu donnï¿½
+			String[] bonnereponse = csv.CoupleRegionCheflieu();
+			String rep1 = csv.RegionRandom();
+			String rep2 = csv.RegionRandom();
+			String rep3 = csv.RegionRandom();
+			while(rep1.equals(bonnereponse[0]))
+				rep1 = csv.RegionRandom();
+			while(rep2.equals(bonnereponse[0]) || rep2.equals(rep1))
+				rep2 = csv.RegionRandom();
+			while(rep3.equals(bonnereponse[0]) || rep3.equals(rep1) ||  rep3.equals(rep2))
+				rep3 = csv.RegionRandom();
+			reponses[0] = "De quelle région " + bonnereponse[1] + " est le chef-lieu ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[0];
+		} else if (indice == 5) { // Deviner la capitale d'un pays donnï¿½
+			String[] bonnereponse = csv.CouplePaysCapitale();
+			String rep1 = csv.CapitaleRandom();
+			String rep2 = csv.CapitaleRandom();
+			String rep3 = csv.CapitaleRandom();
+			while(rep1.equals(bonnereponse[1]))
+				rep1 = csv.CapitaleRandom();
+			while(rep2.equals(bonnereponse[1]) ||  rep2.equals(rep1))
+				rep2 = csv.CapitaleRandom();
+			while(rep3.equals(bonnereponse[1]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
+				rep3 = csv.CapitaleRandom();
+			reponses[0] = "Quelle est la capitale de " + bonnereponse[0] + " ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[1];
+		} else if (indice == 6) { // Deviner le pays connaissant la capitale
+			String[] bonnereponse = csv.CouplePaysCapitale();
+			String rep1 = csv.PaysRandom();
+			String rep2 = csv.PaysRandom();
+			String rep3 = csv.PaysRandom();
+			while(rep1.equals(bonnereponse[0]))
+				rep1 = csv.PaysRandom();
+			while(rep2.equals(bonnereponse[0]) ||  rep2.equals(rep1))
+				rep2 = csv.PaysRandom();
+			while(rep3.equals(bonnereponse[0]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
+				rep3 = csv.PaysRandom();
+			reponses[0] = "De quel pays " + bonnereponse[1] +" est-elle la capitale ?";
+			reponses[1] = rep3;
+			reponses[2] = rep1;
+			reponses[3] = rep2;
+			reponses[4] = bonnereponse[0];
+		}
+		return reponses ;
+	}
 }
 
 

@@ -104,6 +104,19 @@ public class Joueur extends JFrame{
 		} 
 		return scores;
 	}
+	
+	String[] getQuestion() {
+		String questionreponses[] = new String[5];
+		try {
+			sortie.writeInt(action.question.ordinal());
+			for(int i = 0; i<5; i++) {
+				questionreponses[i] = entre.readUTF();
+			}
+		}  catch (IOException e) {
+			e.printStackTrace();
+		} 
+		return questionreponses;
+	}
 
 	String[][] getMeilleursScoresPartie(){
 		String[][] scores = new String[10][2];
@@ -132,6 +145,8 @@ public class Joueur extends JFrame{
 		} 
 		return scores;
 	}
+	
+	
 	
 	void deconexion() {
 		try {
