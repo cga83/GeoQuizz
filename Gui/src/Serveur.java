@@ -120,6 +120,12 @@ public class Serveur {
 				System.out.println("deconexion du joueur " + numJoueur);
 				csv.EcrireFichierUtilisateurs(utilisateurs);
 				nbConn --;
+			} else if (actionDemander == action.question.ordinal()) {
+				String[] questionreponses = new String[5];
+				questionreponses = getQuestion();
+				for(int i = 0; i<5; i++) {
+					out.writeUTF(questionreponses[i]);
+				}
 			}
 		}	
 	}
