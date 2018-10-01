@@ -6,6 +6,6 @@ public enum action {
 	scorePartie, // meilleurs scores sur une partie
 	scoreGeneral, // meilleurs scores cummul�s
 	deconnexion,
-	nouveauScore
+	nouveauScore,
 	question
 }
