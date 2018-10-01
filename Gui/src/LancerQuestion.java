@@ -106,6 +106,12 @@ public class LancerQuestion {
 		timelineCounter.setCycleCount(Timeline.INDEFINITE); 
 		timelineCounter.play();
 		timeline.play();
+		
+		// les timers doivent s'arrêter si on quitte la page avant d'avoir fini le jeu
+		pane.sceneProperty().addListener((obs, oldValue, newValue) -> {
+			timeline.stop();
+			timelineCounter.stop();
+		});
 
 		String bonneReponse = questionReponses[4];
 
@@ -143,9 +149,5 @@ public class LancerQuestion {
 
 		// ajout à la racine
 		root.getChildren().addAll(pane);
-		
-		
-		
-		
 	}
 }

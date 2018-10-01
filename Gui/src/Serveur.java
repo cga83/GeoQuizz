@@ -169,7 +169,7 @@ public class Serveur {
 				rep1 = csv.NumeroDepRandom();
 			while(rep3.equals(bonnereponse[1]) || rep3.equals(rep1) || rep3.equals(rep2))
 				rep1 = csv.NumeroDepRandom();
-			reponses[0] = "Quel est le numéro du département " + bonnereponse[0] + " ?";
+			reponses[0] = "Quel est le numéro du \ndépartement " + bonnereponse[0] + " ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
@@ -185,7 +185,7 @@ public class Serveur {
 				rep2 = csv.DepartementRandom();
 			while(rep3.equals(bonnereponse[0]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.DepartementRandom();
-			reponses[0] = "Quel département a le numéro " +bonnereponse[1] + " ?";
+			reponses[0] = "Quel département a le \nnuméro " +bonnereponse[1] + " ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
@@ -201,7 +201,7 @@ public class Serveur {
 				rep2 = csv.RegionRandom();
 			while(rep3.equals(bonnereponse[0]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.RegionRandom();
-			reponses[0] = "Dans quelle région se trouve ce département : " + bonnereponse[1] + " ?";
+			reponses[0] = "Dans quelle région se trouve \n ce département : " + bonnereponse[1] + " ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
@@ -217,7 +217,7 @@ public class Serveur {
 				rep2 = csv.CheflieuRandom();
 			while(rep3.equals(bonnereponse[1]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.CheflieuRandom();
-			reponses[0] = "Quel est le chef-lieu de la région : " + bonnereponse[0] + " ?";
+			reponses[0] = "Quel est le chef-lieu de la \n région : " + bonnereponse[0] + " ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
@@ -233,7 +233,7 @@ public class Serveur {
 				rep2 = csv.RegionRandom();
 			while(rep3.equals(bonnereponse[0]) || rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.RegionRandom();
-			reponses[0] = "De quelle région " + bonnereponse[1] + " est le chef-lieu ?";
+			reponses[0] = "De quelle région \n " + bonnereponse[1] + "est le chef-lieu ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
@@ -249,7 +249,7 @@ public class Serveur {
 				rep2 = csv.CapitaleRandom();
 			while(rep3.equals(bonnereponse[1]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.CapitaleRandom();
-			reponses[0] = "Quelle est la capitale de " + bonnereponse[0] + " ?";
+			reponses[0] = "Quelle est la capitale de \n " + bonnereponse[0] + " ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
@@ -265,7 +265,7 @@ public class Serveur {
 				rep2 = csv.PaysRandom();
 			while(rep3.equals(bonnereponse[0]) ||  rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.PaysRandom();
-			reponses[0] = "De quel pays " + bonnereponse[1] +" est-elle la capitale ?";
+			reponses[0] = "De quel pays " + bonnereponse[1] +"\n est-elle la capitale ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;
