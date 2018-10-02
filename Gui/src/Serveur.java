@@ -233,7 +233,7 @@ public class Serveur {
 				rep2 = csv.RegionRandom();
 			while(rep3.equals(bonnereponse[0]) || rep3.equals(rep1) ||  rep3.equals(rep2))
 				rep3 = csv.RegionRandom();
-			reponses[0] = "De quelle région \n " + bonnereponse[1] + "est le chef-lieu ?";
+			reponses[0] = "De quelle région \n " + bonnereponse[1] + " est le chef-lieu ?";
 			reponses[1] = rep3;
 			reponses[2] = rep1;
 			reponses[3] = rep2;

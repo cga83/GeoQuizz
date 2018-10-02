@@ -110,7 +110,7 @@ public class LancerQuestion {
 		// les timers doivent s'arrêter si on quitte la page avant d'avoir fini le jeu
 		pane.sceneProperty().addListener((obs, oldValue, newValue) -> {
 			timeline.stop();
-			timelineCounter.stop();
+			//timelineCounter.stop();
 		});
 
 		String bonneReponse = questionReponses[4];

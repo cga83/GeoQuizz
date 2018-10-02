@@ -144,7 +144,7 @@ public class Utils {
 	public static void checkResponse(StackPane root, Joueur joueur, int round, int score, int nbquestion, Button buttonClicked, Button button2, Button button3, Button button4, String bonneReponse) {
 			// si c'est la bonne reponse alors on l'indique en vert sinon en rouge
 			if (buttonClicked.getText().equals(bonneReponse)) {
-				buttonClicked.setStyle("-fx-background-color: green;");
+				buttonClicked.setStyle("-fx-background-color: rgb(0, 253, 0);");
 				// on désactive les boutons
 				Utils.disarmButtons(buttonClicked, button2, button3, button4);
 				// score augmente
