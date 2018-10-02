@@ -82,6 +82,7 @@ public class Utils {
 	
 	private static void runPreviousPage(Object actualPage, StackPane root, Joueur joueur) { // TO DO : le login sera stocké dans la classe joueur
 		if (actualPage instanceof Accueil)
+			//TODO: déco serveur
 			new ConnexionServeur(root, joueur);
 		if (actualPage instanceof ConnexionOuInscription)
 			new Accueil(root, joueur);	
