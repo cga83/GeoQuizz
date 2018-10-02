@@ -34,7 +34,7 @@ public class Main extends Application {
 	 {
 		 // définition de la fenêtre
 		 int largeur = 600;
-		 int hauteur = 900;
+		 int hauteur = 750;
 		 
 		 root = new StackPane();
 		

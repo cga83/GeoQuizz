@@ -17,7 +17,7 @@ import javafx.util.Duration;
 
 public class LancerQuestion {
 	private final static int NBQUESTION = 5;
-	private final static int TEMPSPARQUESTION = 5;
+	private final static int TEMPSPARQUESTION = 8;
 	private StackPane root;
 	private int round;
 	private int score;
