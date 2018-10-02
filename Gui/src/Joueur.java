@@ -9,6 +9,7 @@ public class Joueur extends JFrame{
 
 	//private static final String SERVEUR = "localhost";
 	//private static final int PORT = 2000;
+	private static Joueur  INSTANCE = null;
 	private Socket socket;
 	private DataInputStream entre;
 	private DataOutputStream sortie;
@@ -16,9 +17,15 @@ public class Joueur extends JFrame{
 	private String login = "";
 	private boolean authenticated = false;	
 	
-	Joueur() {
+	private Joueur() {
 		System.out.println("Demarrage joueur");
 		login = "titi"; // à modifier, juste pour tester
+	}
+	public static Joueur getJoueur() {
+		if(INSTANCE == null) {
+			INSTANCE = new Joueur();
+		}
+		return INSTANCE;
 	}
 	
 	DataInputStream getEntree() {

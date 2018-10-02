@@ -25,7 +25,7 @@ public class Main extends Application {
 	 // lancement de l'application
 	 public void start(Stage primaryStage) {
 		 this.primaryStage = primaryStage;
-		 joueur = new Joueur();
+		 joueur = Joueur.getJoueur();
 		 construireScene(primaryStage);
 	 }
 	 
