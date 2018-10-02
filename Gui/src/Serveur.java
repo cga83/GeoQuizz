@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Serveur {
 
+	private static Serveur INSTANCE = null;
 	private static ServerSocket GESTSOCKET;
 	private static final int NBMAXCONN = 4;
 	private static  int nbConn = 0;
@@ -16,10 +17,17 @@ public class Serveur {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Serveur();
+		getServeur();
 	}
 
-	Serveur() {
+	public static Serveur getServeur() {
+		if (INSTANCE == null)
+        {   INSTANCE = new Serveur(); 
+        }
+		return INSTANCE;
+	}
+	
+	private Serveur() {
 		System.out.println("Demarrage serveur");
 		
 		//Recupère tous les utilisateurs et mots de passe via fichier csv
@@ -34,6 +42,7 @@ public class Serveur {
 		} catch (IOException e) {e.printStackTrace( );} 
 	}
 
+	
 	void waitJoueur() {
 		System.out.println("attente client");
 
