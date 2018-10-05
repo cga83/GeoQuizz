@@ -60,7 +60,7 @@ public class ConnexionServeur {
 		 hboxPort.setAlignment(Pos.CENTER);
 		 Text textePort = new Text("port :      ");
 		 textePort.setFill(Color.WHITE);
-		 TextField choixPort = new TextField("10081");
+		 TextField choixPort = new TextField("2000");
 		 hboxPort.getChildren().addAll(textePort, choixPort);
 		 
 		 // bouton pour valider

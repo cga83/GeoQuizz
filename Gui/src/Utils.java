@@ -126,7 +126,7 @@ public class Utils {
 		  HBox hboxPopup = new HBox();
 		  Text textLabel = new Text(message);
 		  hboxPopup.getChildren().add(textLabel);
-		  hboxPopup.setStyle("-fx-background-color: rgb(255,170,170); -fx-border-color:black; -fx-font-size: 12; -fx-padding: 15;");
+		  hboxPopup.setStyle("-fx-background-color: rgb(255,170,170); -fx-border-color:black; -fx-font-size: 15; -fx-padding: 5;");
 		  popup.setAutoHide(true);
 		  popup.setAutoFix(true);
 		  // Calculate popup placement coordinates.
